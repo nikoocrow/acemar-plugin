@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/product-card",
+  "title": "Tarjeta de Producto",
+  "category": "acemar",
+  "icon": "id-alt",
+  "description": "Tarjeta individual de producto con imagen y contenido",
+  "keywords": [
+    "producto",
+    "card",
+    "tarjeta"
+  ],
+  "parent": [
+    "acemar/featured-products"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "linkTarget": {
+      "type": "string",
+      "default": "_self"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

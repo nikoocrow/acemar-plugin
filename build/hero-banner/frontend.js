@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".acemar-hero-banner__content").forEach(function(t){const e=t.getAttribute("data-button-link"),n=t.getAttribute("data-button-target");if(e){const o=t.querySelector(".wp-block-button__link");o&&(o.href=e,o.target=n||"_self","_blank"===n&&(o.rel="noopener noreferrer"))}})});

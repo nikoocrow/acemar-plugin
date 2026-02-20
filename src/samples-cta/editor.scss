@@ -1,0 +1,54 @@
+/**
+ * Estilos del EDITOR para Samples CTA
+ */
+
+.acemar-samples-cta {
+    
+    &__image {
+        
+        &-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+    }
+    
+    &__upload-button {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed #ccc;
+        background: #f8f8f8;
+        border-radius: 32px;
+        font-size: 16px;
+        
+        &:hover {
+            background: #f0f0f0;
+            border-color: #999;
+        }
+    }
+    
+    // RichText en el editor
+    .acemar-samples-cta__title {
+        outline: none;
+        
+        &:focus {
+            outline: 2px solid #007cba;
+            outline-offset: 4px;
+        }
+    }
+    
+    .acemar-samples-cta__text {
+        outline: none;
+        
+        &:focus {
+            outline: 2px solid #007cba;
+            outline-offset: 4px;
+        }
+    }
+}

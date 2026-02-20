@@ -1,0 +1,85 @@
+<!--
+    EJEMPLO: Cómo se vería el HTML final renderizado
+    Este es el output que WordPress generará en el frontend
+-->
+
+<div class="wp-block-acemar-featured-products acemar-featured-products">
+    <div class="acemar-featured-products__header">
+        <h2 class="acemar-featured-products__title">
+            PRODUCTOS DESTACADOS
+        </h2>
+        <div class="acemar-featured-products__divider"></div>
+    </div>
+
+    <div class="acemar-featured-products__grid">
+        
+        <!-- Tarjeta 1 -->
+        <div class="wp-block-acemar-product-card acemar-product-card">
+            <div class="acemar-product-card__image-wrapper">
+                <img 
+                    src="https://ejemplo.com/paneles-acusticos.jpg" 
+                    alt="Páneles acústicos"
+                    class="acemar-product-card__image"
+                />
+            </div>
+            <div class="acemar-product-card__content">
+                <h3 class="acemar-product-card__heading">PÁNELES ACÚSTICOS DE MADERA DOMUS</h3>
+                <p class="acemar-product-card__description">en madera natural para decorar paredes y techos</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="wp-block-acemar-product-card acemar-product-card">
+            <div class="acemar-product-card__image-wrapper">
+                <img 
+                    src="https://ejemplo.com/puertas.jpg" 
+                    alt="Puertas en madera"
+                    class="acemar-product-card__image"
+                />
+            </div>
+            <div class="acemar-product-card__content">
+                <h3 class="acemar-product-card__heading">PUERTAS EN MADERA</h3>
+                <p class="acemar-product-card__description">Puerta acustica en madera diseñada para hoteleria</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="wp-block-acemar-product-card acemar-product-card">
+            <div class="acemar-product-card__image-wrapper">
+                <img 
+                    src="https://ejemplo.com/pisos.jpg" 
+                    alt="Pisos en madera"
+                    class="acemar-product-card__image"
+                />
+            </div>
+            <div class="acemar-product-card__content">
+                <h3 class="acemar-product-card__heading">PISOS EN MADERA ESTRUCTURADA</h3>
+                <p class="acemar-product-card__description">de Ingeniería diseñados para el hogar</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--
+    COMPORTAMIENTO:
+
+    DESKTOP (>= 768px):
+    - Las tarjetas muestran solo la imagen
+    - Al hacer hover:
+      * La imagen hace zoom suave
+      * Aparece overlay oscuro con gradiente
+      * El título y descripción se animan desde abajo
+      * La tarjeta se eleva con sombra
+
+    MOBILE (< 768px):
+    - La imagen arriba
+    - Título y descripción siempre visibles debajo
+    - Sin efecto hover
+    - Diseño en tarjeta estándar
+
+    GRID:
+    - Desktop: 3 columnas
+    - Tablet: 2 columnas
+    - Mobile: 1 columna
+-->

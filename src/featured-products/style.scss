@@ -1,0 +1,49 @@
+/**
+ * Estilos del FRONTEND para Featured Products
+ * Estos estilos se cargan en el sitio público
+ */
+
+.acemar-featured-products {
+    padding: 80px 20px;
+    background-color: transparent;
+
+    &__header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    &__title {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 400;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        color: #2c2c2c;
+    }
+
+    &__divider {
+        width: 80px;
+        height: 2px;
+        background-color: #D4AF37; // Color dorado elegante
+        margin: 0 auto;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+        
+        // En tablet, máximo 2 columnas
+        @media (min-width: 768px) and (max-width: 1199px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        // En desktop, máximo 3 columnas
+        @media (min-width: 1200px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

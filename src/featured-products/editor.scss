@@ -1,0 +1,92 @@
+/**
+ * Estilos para el EDITOR - Grid de 3 columnas con imágenes anchas
+ */
+
+.acemar-featured-products {
+    padding: 30px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    max-width: none !important;
+
+    &__grid {
+        // GRID de 3 columnas
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 24px !important;
+        padding: 20px;
+        width: 100%; // ANCHO COMPLETO
+        
+        // Forzar que los contenedores internos usen el grid
+        .block-editor-inner-blocks,
+        .block-editor-block-list__layout {
+            display: contents !important;
+            width: 100%; // ANCHO COMPLETO
+        }
+
+        // Cada tarjeta - SIN restricciones de ancho
+        .wp-block[data-type="acemar/product-card"] {
+            min-height: 420px !important;
+            max-height: 500px !important;
+            width: 100% !important; // ANCHO COMPLETO
+            max-width: 100% !important; // SIN límite
+        }
+    }
+}
+
+// Botón +
+.acemar-featured-products {
+    .block-list-appender {
+        position: absolute !important;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+        
+        button {
+            min-height: 44px !important;
+            width: 44px !important;
+            height: 44px !important;
+            padding: 0 !important;
+            background: #D4AF37 !important;
+            border: 2px solid #D4AF37 !important;
+            border-radius: 50% !important;
+            color: white !important;
+            font-size: 26px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.4) !important;
+            transition: all 0.3s ease !important;
+            
+            &:hover {
+                background: #b8962e !important;
+                transform: scale(1.15) !important;
+            }
+            
+            svg {
+                width: 22px !important;
+                height: 22px !important;
+            }
+        }
+    }
+}
+
+// Advertencia
+.acemar-featured-products__grid {
+    .wp-block[data-type="acemar/product-card"]:nth-child(7) {
+        &::before {
+            content: '⚠️ Máximo 6 tarjetas';
+            position: absolute;
+            top: -35px;
+            left: 0;
+            background: #ff9800;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 10;
+        }
+    }
+}

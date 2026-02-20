@@ -1,0 +1,102 @@
+/**
+ * Estilos del EDITOR para Featured Projects
+ * Ocupa todo el ancho disponible
+ */
+
+.acemar-featured-projects {
+    padding: 30px 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+
+    &__slider {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &__track {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px 0;
+        
+        // Scrollbar personalizada y visible
+        &::-webkit-scrollbar {
+            height: 12px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 10px;
+            
+            &:hover {
+                background: #b8962e;
+            }
+        }
+
+        .block-editor-inner-blocks,
+        .block-editor-block-list__layout {
+            display: flex !important;
+            gap: 24px;
+        }
+
+        // Cada proyecto
+        .wp-block[data-type="acemar/project-card"] {
+            flex: 0 0 380px;
+            min-width: 380px;
+            max-width: 380px;
+        }
+
+        // Botón + (70px x 70px)
+        .block-list-appender {
+            flex: 0 0 auto;
+            min-width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            button {
+                width: 70px !important;
+                height: 70px !important;
+                min-height: 70px !important;
+                background: white !important;
+                border: 3px dashed #D4AF37 !important;
+                border-radius: 50% !important;
+                color: #D4AF37 !important;
+                font-size: 36px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                transition: all 0.3s ease !important;
+                box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2) !important;
+                
+                &:hover {
+                    background: #fffbf0 !important;
+                    border-color: #b8962e !important;
+                    transform: scale(1.1) !important;
+                    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+                }
+
+                svg {
+                    width: 24px !important;
+                    height: 24px !important;
+                }
+            }
+        }
+    }
+}
+
+// FORZAR ancho completo en el contexto del editor
+.wp-block-acemar-featured-projects {
+    width: 100% !important;
+    max-width: 100% !important;
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar-blocks/samples-cta",
+  "title": "Solicitar Muestra",
+  "category": "acemar",
+  "icon": "admin-page",
+  "description": "Bloque de Call to Action para solicitar muestras con imagen y contenido",
+  "keywords": ["muestra", "cta", "samples", "solicitar"],
+  "textdomain": "acemar-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "SOLICITAR MUESTRA"
+    },
+    "content": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "SOLICITE SU MUESTRA"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+   "backgroundColor": {
+    "type": "string",
+    "default": "#ffffff"
+    },
+  "imagePosition": {
+    "type": "string",
+    "default": "left"
+  }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true
+  }
+} 

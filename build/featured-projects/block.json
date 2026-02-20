@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/featured-projects",
+  "title": "Proyectos Destacados",
+  "category": "acemar",
+  "icon": "images-alt2",
+  "description": "Slider de proyectos destacados con navegación",
+  "keywords": [
+    "proyectos",
+    "slider",
+    "carousel"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js"
+}

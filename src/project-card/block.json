@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/project-card",
+  "title": "Tarjeta de Proyecto",
+  "category": "acemar",
+  "icon": "portfolio",
+  "description": "Tarjeta individual de proyecto con botón Ver Proyecto",
+  "keywords": ["proyecto", "card", "portfolio"],
+  "parent": ["acemar/featured-projects"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "projectLink": {
+      "type": "string",
+      "default": ""
+    },
+    "projectTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "VER PROYECTO"
+    },
+    "projectDescription": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

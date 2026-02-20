@@ -1,0 +1,173 @@
+/**
+ * Estilos del FRONTEND para Project Card
+ */
+
+.acemar-project-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: visible;
+    background: transparent;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    &__image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #f0f0f0;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease, filter 0.3s ease;
+    }
+
+    &:hover &__image {
+        transform: scale(1.08);
+        filter: brightness(0.7);
+    }
+
+    // Descripción DENTRO del image-wrapper (encima de la imagen)
+    .acemar-project-card__description {
+        position: absolute;
+        bottom: 80px;
+        left: 0;
+        right: 0;
+        padding: 0 40px;
+        font-size: 16px;
+        line-height: 1.7;
+        color: white;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+        text-align: center;
+        z-index: 3;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    // Botón centrado DENTRO del image-wrapper
+    &__button-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 4;
+    }
+
+    &__button {
+        display: inline-block;
+        padding: 16px 36px;
+        background: transparent;
+        border: 2px solid white;
+        border-radius: 0;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    &__content {
+        padding: 0;
+        background: transparent;
+
+        // Título FUERA de la tarjeta (abajo de la imagen)
+        h3, .acemar-project-card__heading {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin: 20px 0 0 0;
+            padding: 0;
+            color: #2c2c2c;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+
+    // HOVER DESKTOP: Mostrar descripción
+    @media (min-width: 769px) {
+        &:hover {
+            .acemar-project-card__description {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .acemar-project-card__button {
+                background: #D4AF37;
+                border-color: #D4AF37;
+                color: white;
+            }
+        }
+    }
+
+    // ============================================
+    // MOBILE: Mostrar todo sin hover
+    // ============================================
+    @media (max-width: 768px) {
+        &__image-wrapper {
+            height: 400px;
+        }
+
+        &__image {
+            filter: brightness(0.7);
+            transform: scale(1);
+        }
+
+        // Descripción SIEMPRE VISIBLE en mobile
+        .acemar-project-card__description {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            font-size: 14px;
+            line-height: 1.6;
+            bottom: 70px;
+            padding: 0 25px;
+        }
+
+        &__button-wrapper {
+            top: 50%;
+        }
+
+        &__button {
+            font-size: 13px;
+            padding: 14px 28px;
+            background: #D4AF37;
+            border-color: #D4AF37;
+        }
+
+        &__content {
+            h3, .acemar-project-card__heading {
+                font-size: 18px;
+                margin: 15px 0 0 0;
+            }
+        }
+
+        // Sin hover en mobile
+        &:hover {
+            transform: none;
+            
+            .acemar-project-card__image {
+                transform: scale(1);
+                filter: brightness(0.7);
+            }
+        }
+    }
+}

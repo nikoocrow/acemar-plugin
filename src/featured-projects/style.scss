@@ -1,0 +1,122 @@
+/**
+ * Estilos del FRONTEND para Featured Projects Slider
+ * CON flechas de navegación
+ */
+
+.acemar-featured-projects {
+    padding: 60px 80px;
+    background: #f8f8f8;
+    position: relative;
+
+    // Flechas a los extremos
+    &__nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 60px;
+        height: 60px;
+        background: #D4AF37;
+        border: none;
+        border-radius: 50%;
+        color: white;
+        font-size: 36px;
+        cursor: pointer;
+        display: none; // Ocultas por defecto
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        
+        &:hover {
+            background: #b8962e;
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6);
+        }
+
+        &:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: translateY(-50%);
+        }
+
+        // Flecha izquierda
+        &--left {
+            left: 20px;
+        }
+
+        // Flecha derecha
+        &--right {
+            right: 20px;
+        }
+    }
+
+    &__slider {
+        overflow: hidden;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    &__track {
+        display: flex;
+        gap: 30px;
+        transition: transform 0.5s ease-in-out;
+        
+        // Cada proyecto
+        > * {
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: 320px;
+        }
+    }
+
+    // Responsive
+    @media (max-width: 1200px) {
+        padding: 60px 70px;
+        
+        &__track > * {
+            flex: 0 0 calc(50% - 15px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 40px 20px;
+        
+        &__track > * {
+            flex: 0 0 100%;
+        }
+
+        &__nav {
+            width: 50px;
+            height: 50px;
+            font-size: 28px;
+
+            &--left {
+                left: 5px;
+            }
+
+            &--right {
+                right: 5px;
+            }
+        }
+    }
+    
+    // Mobile pequeño
+    @media (max-width: 480px) {
+        padding: 30px 10px;
+        
+        &__nav {
+            width: 45px;
+            height: 45px;
+            font-size: 24px;
+            
+            &--left {
+                left: 5px;
+            }
+            
+            &--right {
+                right: 5px;
+            }
+        }
+    }
+}

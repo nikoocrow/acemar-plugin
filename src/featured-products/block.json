@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/featured-products",
+  "title": "Productos Destacados",
+  "category": "acemar",
+  "icon": "star-filled",
+  "description": "Sección de productos destacados con tarjetas interactivas",
+  "keywords": ["productos", "featured", "cards"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

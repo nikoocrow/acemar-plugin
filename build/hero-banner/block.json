@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/hero-banner",
+  "title": "Hero Banner",
+  "category": "acemar",
+  "icon": "cover-image",
+  "description": "Banner hero con imagen de fondo y contenido centrado",
+  "keywords": [
+    "hero",
+    "banner",
+    "imagen",
+    "fondo"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "backgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 0.5
+    },
+    "minHeight": {
+      "type": "number",
+      "default": 500
+    },
+    "buttonLink": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonTarget": {
+      "type": "string",
+      "default": "_self"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js"
+}

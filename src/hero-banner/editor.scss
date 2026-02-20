@@ -1,0 +1,90 @@
+/**
+ * Estilos del EDITOR para Hero Banner
+ */
+
+.acemar-hero-banner {
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+
+    // Cuando tiene imagen de fondo
+    &[style*="background-image"] {
+        border-color: #D4AF37;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 900px;
+        padding: 60px 40px;
+        text-align: center;
+
+        // Estilos para los bloques internos
+        .wp-block-heading {
+            margin-bottom: 20px;
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .wp-block-paragraph {
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .wp-block-buttons {
+            margin-top: 20px;
+        }
+
+        .wp-block-button {
+            margin: 0;
+            
+            .wp-block-button__link {
+                border: 2px solid #D4AF37 !important;
+                border-radius: 0 !important; // SIN bordes redondeados
+                background-color: transparent !important;
+                color: white !important;
+                padding: 14px 32px !important;
+                font-size: 14px !important;
+                font-weight: 600 !important;
+                letter-spacing: 1px !important;
+                text-transform: uppercase !important;
+            }
+        }
+    }
+}
+
+// Placeholder cuando no hay imagen
+.acemar-hero-banner:not([style*="background-image"])::before {
+    content: '📷 Selecciona una imagen de fondo en la barra lateral →';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 1;
+    pointer-events: none;
+}
