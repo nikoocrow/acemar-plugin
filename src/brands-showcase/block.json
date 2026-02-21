@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar-blocks/brands-showcase",
+  "title": "Nuestras Marcas",
+  "category": "acemar",
+  "icon": "grid-view",
+  "description": "Muestra logos de marcas con efecto marquee opcional",
+  "keywords": ["marcas", "logos", "brands", "marquee"],
+  "textdomain": "acemar-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "viewScript": "file:./frontend.js",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Nuestras marcas"
+    },
+    "logos": {
+      "type": "array",
+      "default": []
+    },
+    "enableMarquee": {
+      "type": "boolean",
+      "default": true
+    },
+    "direction": {
+      "type": "string",
+      "default": "left"
+    },
+    "speed": {
+      "type": "number",
+      "default": 30
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true
+  }
+}

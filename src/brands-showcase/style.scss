@@ -1,0 +1,160 @@
+/**
+ * Estilos del FRONTEND para Brands Showcase
+ */
+
+.acemar-brands-showcase {
+    padding: 80px 60px;
+    overflow: hidden;
+    
+    &__header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    
+    &__title {
+        font-family: 'Cinzel', serif;
+        font-size: 3rem;
+        font-weight: 400;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #2c2c2c;
+        margin: 0;
+    }
+    
+    &__container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    &__track {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        width: fit-content;
+        
+        &.is-animated {
+            animation-name: marquee;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-duration: 30s; // Se sobreescribe desde JS
+            
+            // Pausar al hacer hover
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
+    }
+    
+    &__logo {
+        flex-shrink: 0;
+        width: 200px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        &:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+    }
+    
+    // Animación marquee
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(var(--marquee-distance));
+        }
+    }
+    
+    // ============================================
+    // RESPONSIVE
+    // ============================================
+    
+    @media (max-width: 1024px) {
+        padding: 60px 40px;
+        
+        &__title {
+            font-size: 2.5rem;
+        }
+        
+        &__track {
+            gap: 60px;
+        }
+        
+        &__logo {
+            width: 180px;
+            height: 100px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        padding: 60px 30px;
+        
+        &__header {
+            margin-bottom: 40px;
+        }
+        
+        &__title {
+            font-size: 2rem;
+        }
+        
+        // En mobile: grid vertical sin animación
+        &__container {
+            overflow: visible;
+        }
+        
+        &__track {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            animation: none !important;
+            width: 100%;
+            
+            // Mostrar solo los primeros logos (no duplicados)
+            .acemar-brands-showcase__logo {
+                &:nth-child(n+9) {
+                    display: none;
+                }
+            }
+        }
+        
+        &__logo {
+            width: 100%;
+            height: 80px;
+            
+            img {
+                filter: grayscale(0%);
+                opacity: 1;
+            }
+        }
+    }
+    
+    @media (max-width: 480px) {
+        padding: 40px 20px;
+        
+        &__title {
+            font-size: 1.8rem;
+        }
+        
+        &__track {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+    }
+}

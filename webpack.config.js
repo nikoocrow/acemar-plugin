@@ -20,6 +20,9 @@ module.exports = {
         'featured-projects/frontend': path.resolve(__dirname, 'src/featured-projects/frontend.js'),
         'project-card/index': path.resolve(__dirname, 'src/project-card/index.js'),
         'samples-cta/index': path.resolve(__dirname, 'src/samples-cta/index.js'),
+        'brands-showcase/index': path.resolve(__dirname, 'src/brands-showcase/index.js'),
+        'brands-showcase/frontend': path.resolve(__dirname, 'src/brands-showcase/frontend.js'),
+        
     },
     output: {
         ...defaultConfig.output,
