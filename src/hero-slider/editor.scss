@@ -1,0 +1,104 @@
+/**
+ * Estilos del EDITOR para Hero Slider
+ */
+
+.acemar-hero-slider {
+    position: relative;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    background: #f8f8f8;
+    
+    &__editor-header {
+        padding: 16px 40px;
+        background: #D4AF37;
+        color: white;
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .header-title {
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        
+        .slide-navigation {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            
+            .nav-button {
+                background: rgba(255, 255, 255, 0.2);
+                border: 2px solid white;
+                color: white;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    background: white;
+                    color: #D4AF37;
+                }
+            }
+            
+            .slide-dots {
+                display: flex;
+                gap: 8px;
+                
+                .dot {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    border: 2px solid transparent;
+                    color: white;
+                    font-size: 11px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.5);
+                    }
+                    
+                    &.active {
+                        background: white;
+                        color: #D4AF37;
+                        border-color: white;
+                    }
+                }
+            }
+        }
+    }
+    
+    &__editor-slides {
+        position: relative;
+        overflow: hidden;
+        
+        .acemar-hero-slider__slides {
+            display: flex;
+            transition: transform 0.3s ease;
+            
+            > .wp-block {
+                flex: 0 0 100%;
+                margin: 0 !important;
+            }
+        }
+    }
+}

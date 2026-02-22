@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ACEMAR_BLOCKS_VERSION', '1.0.0');
+define('ACEMAR_BLOCKS_VERSION', '1.0.4');  // Cambiar de 1.0.0 a 1.0.4
 define('ACEMAR_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('ACEMAR_BLOCKS_URL', plugin_dir_url(__FILE__));
 
@@ -61,6 +61,12 @@ class Acemar_Blocks {
 
     // Brands Showcase Block
     register_block_type(ACEMAR_BLOCKS_PATH . 'build/brands-showcase');
+
+
+    // Hero Slider Blocks
+   // Hero Slider Blocks
+register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slider');
+register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slide');
 
     }
     
@@ -170,6 +176,28 @@ function acemar_blocks_fix_svg_metadata($data, $id) {
         }
     }
     
-    return $data;
+   return $data;
 }
 add_filter('wp_update_attachment_metadata', 'acemar_blocks_fix_svg_metadata', 10, 2);
+
+/**
+ * ============================================
+ * ENCOLAR CSS DE SPLIDE
+ * ============================================
+ */
+
+/**
+ * Encolar CSS de Splide en el frontend
+ */
+function acemar_blocks_enqueue_splide_css() {
+    // Solo en el frontend
+    if (!is_admin()) {
+        wp_enqueue_style(
+            'splide-css',
+            'https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css',
+            array(),
+            '4.1.4'
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'acemar_blocks_enqueue_splide_css');

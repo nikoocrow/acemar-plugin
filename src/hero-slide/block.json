@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar-blocks/hero-slide",
+  "title": "Hero Slide",
+  "category": "acemar",
+  "parent": ["acemar-blocks/hero-slider"],
+  "icon": "format-image",
+  "description": "Slide individual para Hero Slider",
+  "keywords": ["slide", "hero"],
+  "textdomain": "acemar-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "contentAlignment": {
+      "type": "string",
+      "default": "center"
+    }
+  },
+  "supports": {
+    "html": false,
+    "reusable": false
+  }
+}
