@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ACEMAR_BLOCKS_VERSION', '1.0.4');  // Cambiar de 1.0.0 a 1.0.4
+define('ACEMAR_BLOCKS_VERSION', '1.0.4');
 define('ACEMAR_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('ACEMAR_BLOCKS_URL', plugin_dir_url(__FILE__));
 
@@ -29,53 +29,25 @@ class Acemar_Blocks {
     }
     
     private function __construct() {
-        // Registrar bloques cuando WordPress se inicializa
         add_action('init', [$this, 'register_blocks']);
-        
-        // Registrar categoría personalizada de bloques
         add_filter('block_categories_all', [$this, 'register_block_category'], 10, 2);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts']);
     }
     
-    /**
-     * Registra todos los bloques del plugin
-     * El método moderno usa block.json para la configuración
-     */
-  public function register_blocks() {
-    // Registrar el bloque contenedor (Featured Products)
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/featured-products');
-    
-    // Registrar el bloque de tarjeta individual (Product Card)
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/product-card');
-    
-    // Registrar el bloque Hero Banner
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-banner');
-
-    // Registrar el bloque contenedor (Featured Projects)
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/featured-projects');
-
-    // Registrar el bloque de tarjeta individual (Project Card)
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/project-card');
-
-    // Samples CTA Block
-    register_block_type(__DIR__ . '/build/samples-cta');
-
-    // Brands Showcase Block
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/brands-showcase');
-
-    // Hero Video Block
-    register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-video');   
-
-
-    // Hero Slider Blocks
-   // Hero Slider Blocks
-register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slider');
-register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slide');
-
+    public function register_blocks() {
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/featured-products');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/product-card');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-banner');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/featured-projects');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/project-card');
+        register_block_type(__DIR__ . '/build/samples-cta');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/brands-showcase');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-video');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slider');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slide');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/cifras-hero');
     }
     
-    /**
-     * Registra una categoría personalizada para los bloques de Acemar
-     */
     public function register_block_category($categories, $post) {
         return array_merge(
             [
@@ -88,11 +60,31 @@ register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slide');
             $categories
         );
     }
-    
-}
 
-// Inicializar el plugin
-Acemar_Blocks::get_instance();
+    public function enqueue_frontend_scripts() {
+        // Cifras Hero - animación de conteo
+        if ( has_block('acemar/cifras-hero') ) {
+            wp_enqueue_script(
+                'acemar-cifras-hero-frontend',
+                ACEMAR_BLOCKS_URL . 'build/cifras-hero/frontend.js',
+                [],
+                filemtime(ACEMAR_BLOCKS_PATH . 'build/cifras-hero/frontend.js'),
+                true
+            );
+        }
+
+        // Hero Slider - Splide JS
+        if ( has_block('acemar/hero-slider') ) {
+            wp_enqueue_script(
+                'acemar-hero-slider-frontend',
+                ACEMAR_BLOCKS_URL . 'build/hero-slider/frontend.js',
+                [],
+                filemtime(ACEMAR_BLOCKS_PATH . 'build/hero-slider/frontend.js'),
+                true
+            );
+        }
+    }
+}
 
 // Inicializar el plugin
 Acemar_Blocks::get_instance();
@@ -103,9 +95,6 @@ Acemar_Blocks::get_instance();
  * ============================================
  */
 
-/**
- * Permitir subir archivos SVG
- */
 function acemar_blocks_allow_svg($mimes) {
     $mimes['svg'] = 'image/svg+xml';
     $mimes['svgz'] = 'image/svg+xml';
@@ -113,9 +102,6 @@ function acemar_blocks_allow_svg($mimes) {
 }
 add_filter('upload_mimes', 'acemar_blocks_allow_svg');
 
-/**
- * Verificar tipo de archivo SVG
- */
 function acemar_blocks_check_svg_filetype($data, $file, $filename, $mimes) {
     $filetype = wp_check_filetype($filename, $mimes);
     
@@ -127,9 +113,6 @@ function acemar_blocks_check_svg_filetype($data, $file, $filename, $mimes) {
 }
 add_filter('wp_check_filetype_and_ext', 'acemar_blocks_check_svg_filetype', 10, 4);
 
-/**
- * Corregir preview de SVG en media library
- */
 function acemar_blocks_fix_svg_display() {
     echo '<style>
         .attachment-266x266, .thumbnail img {
@@ -144,9 +127,6 @@ function acemar_blocks_fix_svg_display() {
 }
 add_action('admin_head', 'acemar_blocks_fix_svg_display');
 
-/**
- * Agregar dimensiones SVG para WordPress
- */
 function acemar_blocks_fix_svg_metadata($data, $id) {
     $attachment = get_post($id);
     
@@ -179,7 +159,7 @@ function acemar_blocks_fix_svg_metadata($data, $id) {
         }
     }
     
-   return $data;
+    return $data;
 }
 add_filter('wp_update_attachment_metadata', 'acemar_blocks_fix_svg_metadata', 10, 2);
 
@@ -189,11 +169,7 @@ add_filter('wp_update_attachment_metadata', 'acemar_blocks_fix_svg_metadata', 10
  * ============================================
  */
 
-/**
- * Encolar CSS de Splide en el frontend
- */
 function acemar_blocks_enqueue_splide_css() {
-    // Solo en el frontend
     if (!is_admin()) {
         wp_enqueue_style(
             'splide-css',

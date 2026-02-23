@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/cifras-hero",
+  "title": "Cifras Hero",
+  "category": "acemar",
+  "icon": "chart-bar",
+  "description": "Hero con imagen de fondo y cifras animadas con iconos",
+  "keywords": ["cifras", "hero", "stats", "numeros", "iconos"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "backgroundImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 0.4
+    },
+    "minHeight": {
+      "type": "number",
+      "default": 400
+    },
+    "contentAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#C9A84C"
+    },
+    "cifras": {
+      "type": "array",
+      "default": [
+        { "icon": "", "number": "500", "suffix": "+", "label": "Países" },
+        { "icon": "", "number": "350", "suffix": "+", "label": "Plantas" },
+        { "icon": "", "number": "25",  "suffix": "+", "label": "Empleados" },
+        { "icon": "", "number": "300", "suffix": "+", "label": "m²" },
+        { "icon": "", "number": "80",  "suffix": "+", "label": "Proyectos" }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
