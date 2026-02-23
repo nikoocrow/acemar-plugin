@@ -27,6 +27,9 @@ module.exports = {
         'hero-slider/index': path.resolve(__dirname, 'src/hero-slider/index.js'),
         'hero-slider/frontend': path.resolve(__dirname, 'src/hero-slider/frontend.js'),
         'hero-slide/index': path.resolve(__dirname, 'src/hero-slide/index.js'),
+
+
+         'hero-video/index': path.resolve(__dirname, 'src/hero-video/index.js'),
       
         
     },

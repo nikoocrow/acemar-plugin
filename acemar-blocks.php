@@ -62,6 +62,9 @@ class Acemar_Blocks {
     // Brands Showcase Block
     register_block_type(ACEMAR_BLOCKS_PATH . 'build/brands-showcase');
 
+    // Hero Video Block
+    register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-video');   
+
 
     // Hero Slider Blocks
    // Hero Slider Blocks

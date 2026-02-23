@@ -1,0 +1,76 @@
+.acemar-hero-video {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: 177.78vh;
+        height: 56.25vw;
+        object-fit: cover;
+        z-index: 0;
+        border: none;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 900px;
+        padding: 60px 20px;
+        text-align: center;
+
+        h1, h2, h3 {
+            color: #fff;
+        }
+
+        p {
+            color: #fff;
+        }
+
+        // Estilos del botón de Gutenberg
+        .wp-block-buttons {
+            justify-content: center;
+        }
+
+        .wp-block-button__link {
+            border-radius: 0 !important;
+            background: transparent !important;
+            border: 2px solid #C9A84C !important;
+            color: #fff !important;
+            padding: 14px 32px;
+            font-family: "Playfair Display", serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s, border-color 0.3s;
+
+            &:hover {
+                background: #C9A84C !important;
+                border-color: #C9A84C !important;
+                color: #000 !important;
+            }
+        }
+    }
+
+    &__placeholder {
+        position: absolute;
+        inset: 0;
+        background: #1a1a1a;
+        z-index: 0;
+    }
+}
