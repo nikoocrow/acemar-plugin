@@ -28,6 +28,8 @@ module.exports = {
         'hero-video/index':             path.resolve(__dirname, 'src/hero-video/index.js'),
         'cifras-hero/index':            path.resolve(__dirname, 'src/cifras-hero/index.js'), 
         'cifras-hero/frontend':         path.resolve(__dirname, 'src/cifras-hero/frontend.js'),
+        'timeline/index':               path.resolve(__dirname, 'src/timeline/index.js'),
+        'timeline/frontend':            path.resolve(__dirname, 'src/timeline/frontend.js'),
     },
     output: {
         ...defaultConfig.output,

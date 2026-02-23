@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/timeline",
+  "title": "Timeline",
+  "category": "acemar",
+  "icon": "clock",
+  "description": "Línea de tiempo interactiva con imagen y navegación por años",
+  "keywords": ["timeline", "historia", "años", "hitos"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#C9A84C"
+    },
+    "panelBg": {
+      "type": "string",
+      "default": "#1a1a1a"
+    },
+    "hitos": {
+      "type": "array",
+      "default": [
+        {
+          "year": "1962",
+          "title": "Nace un sueño",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+          "imageUrl": "",
+          "imageId": 0
+        },
+        {
+          "year": "1975",
+          "title": "Expansión global",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+          "imageUrl": "",
+          "imageId": 0
+        },
+        {
+          "year": "1990",
+          "title": "Nueva era",
+          "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+          "imageUrl": "",
+          "imageId": 0
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

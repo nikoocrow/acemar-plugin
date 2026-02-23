@@ -46,6 +46,7 @@ class Acemar_Blocks {
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slider');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slide');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/cifras-hero');
+        register_block_type( ACEMAR_BLOCKS_PATH . 'build/timeline' );
     }
     
     public function register_block_category($categories, $post) {
@@ -69,6 +70,16 @@ class Acemar_Blocks {
                 ACEMAR_BLOCKS_URL . 'build/cifras-hero/frontend.js',
                 [],
                 filemtime(ACEMAR_BLOCKS_PATH . 'build/cifras-hero/frontend.js'),
+                true
+            );
+        }
+
+        if ( has_block( 'acemar/timeline' ) ) {
+             wp_enqueue_script(
+                'acemar-timeline-frontend',
+                ACEMAR_BLOCKS_URL . 'build/timeline/frontend.js',
+                [],
+                filemtime( ACEMAR_BLOCKS_PATH . 'build/timeline/frontend.js' ),
                 true
             );
         }

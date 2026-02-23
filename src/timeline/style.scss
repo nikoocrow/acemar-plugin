@@ -1,0 +1,264 @@
+.acemar-timeline {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f0f0f0;
+    user-select: none;
+
+    &__slides {
+        position: relative;
+        width: 100%;
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    &__slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+
+        &.is-active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+
+    &__image {
+        flex: 0 0 58%;
+        overflow: hidden;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transform: scale(1.05);
+            transition: transform 0.8s ease;
+        }
+    }
+
+    &__slide.is-active &__image img {
+        transform: scale(1);
+    }
+
+    &__panel {
+        flex: 0 0 42%;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    &__panel-inner {
+        padding: 60px 50px;
+        transform: translateX(40px);
+        opacity: 0;
+        transition: transform 0.6s ease 0.2s, opacity 0.6s ease 0.2s;
+    }
+
+    &__slide.is-active &__panel-inner {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    &__year {
+        display: block;
+        font-family: "Italiana", sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 16px;
+    }
+
+    &__title {
+        color: #fff;
+        font-family: "Italiana", sans-serif;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        font-weight: 700;
+        margin: 0 0 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent, #C9A84C);
+            margin: 12px auto 0;
+        }
+    }
+
+    &__description {
+        color: rgba(255, 255, 255, 0.8);
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin: 20px 0 0;
+        text-align: center;
+    }
+
+    // ← FLECHAS FUERA DEL MEDIA QUERY
+    &__arrow {
+        position: absolute;
+        top: 35%;
+        transform: translateY(-50%);
+        background: rgba(201, 168, 76, 0.25);
+        border: 1px solid rgba(201, 168, 76, 0.5);
+        color: #C9A84C;
+        font-size: 2.5rem;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s, border-color 0.3s;
+        line-height: 1;
+
+        &:hover {
+            background: rgba(201, 168, 76, 0.5);
+            border-color: #C9A84C;
+        }
+
+        &--prev { left: 16px; }
+        &--next { right: 43%; margin-right: 16px; }
+    }
+
+    // ── Barra navegación ─────────────────────
+    &__nav {
+        position: relative;
+        width: 100%;
+        background: #fff;
+        padding: 20px 60px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    &__nav-track {
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        flex: 1;
+        padding: 10px 0;
+
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    &__nav-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #ddd;
+        transform: translateY(-50%);
+        z-index: 0;
+    }
+
+    &__nav-item {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex: 0 0 auto;
+        padding: 0 24px;
+        transition: transform 0.3s;
+
+        &:hover { transform: scale(1.1); }
+
+        &.is-active {
+            .acemar-timeline__nav-dot {
+                background: var(--accent, #C9A84C);
+                transform: scale(1.5);
+                box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
+            }
+
+            .acemar-timeline__nav-year {
+                color: var(--accent, #C9A84C);
+                font-weight: 700;
+                font-size: 0.95rem;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    &__nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ccc;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 1px #ccc;
+        transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        display: block;
+    }
+
+    &__nav-year {
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 0.8rem;
+        color: #999;
+        transition: color 0.3s, font-size 0.3s, transform 0.3s;
+        white-space: nowrap;
+    }
+
+    &__nav-arrow {
+        background: none;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        flex-shrink: 0;
+        transition: border-color 0.3s, color 0.3s;
+        line-height: 1;
+
+        &:hover {
+            border-color: #C9A84C;
+            color: #C9A84C;
+        }
+
+        &--prev { margin-right: 12px; order: -1; }
+        &--next { margin-left: 12px; }
+    }
+
+    @media ( max-width: 768px ) {
+        &__slides { height: auto; min-height: unset; }
+
+        &__slide {
+            flex-direction: column;
+            position: relative;
+            display: none;
+
+            &.is-active { display: flex; }
+        }
+
+        &__image { flex: 0 0 260px; width: 100%; }
+        &__panel { flex: unset; width: 100%; }
+        &__panel-inner { padding: 30px 24px; }
+
+        &__arrow {
+            top: 130px;
+            &--next { right: 16px; margin-right: 0; }
+        }
+    }
+}
