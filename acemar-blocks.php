@@ -46,7 +46,9 @@ class Acemar_Blocks {
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slider');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/hero-slide');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/cifras-hero');
-        register_block_type( ACEMAR_BLOCKS_PATH . 'build/timeline' );
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/timeline');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/testimonios');
+        register_block_type( ACEMAR_BLOCKS_PATH . 'build/boton' );
     }
     
     public function register_block_category($categories, $post) {
@@ -63,7 +65,6 @@ class Acemar_Blocks {
     }
 
     public function enqueue_frontend_scripts() {
-        // Cifras Hero - animación de conteo
         if ( has_block('acemar/cifras-hero') ) {
             wp_enqueue_script(
                 'acemar-cifras-hero-frontend',
@@ -74,23 +75,33 @@ class Acemar_Blocks {
             );
         }
 
-        if ( has_block( 'acemar/timeline' ) ) {
-             wp_enqueue_script(
+        if ( has_block('acemar/timeline') ) {
+            wp_enqueue_script(
                 'acemar-timeline-frontend',
                 ACEMAR_BLOCKS_URL . 'build/timeline/frontend.js',
                 [],
-                filemtime( ACEMAR_BLOCKS_PATH . 'build/timeline/frontend.js' ),
+                filemtime(ACEMAR_BLOCKS_PATH . 'build/timeline/frontend.js'),
                 true
             );
         }
 
-        // Hero Slider - Splide JS
         if ( has_block('acemar/hero-slider') ) {
             wp_enqueue_script(
                 'acemar-hero-slider-frontend',
                 ACEMAR_BLOCKS_URL . 'build/hero-slider/frontend.js',
                 [],
                 filemtime(ACEMAR_BLOCKS_PATH . 'build/hero-slider/frontend.js'),
+                true
+            );
+        }
+
+        // ← TESTIMONIOS DENTRO DEL MÉTODO
+        if ( has_block('acemar/testimonios') ) {
+            wp_enqueue_script(
+                'acemar-testimonios-frontend',
+                ACEMAR_BLOCKS_URL . 'build/testimonios/frontend.js',
+                [],
+                filemtime(ACEMAR_BLOCKS_PATH . 'build/testimonios/frontend.js'),
                 true
             );
         }
@@ -115,7 +126,6 @@ add_filter('upload_mimes', 'acemar_blocks_allow_svg');
 
 function acemar_blocks_check_svg_filetype($data, $file, $filename, $mimes) {
     $filetype = wp_check_filetype($filename, $mimes);
-    
     return [
         'ext'             => $filetype['ext'],
         'type'            => $filetype['type'],

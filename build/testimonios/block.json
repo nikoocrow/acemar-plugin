@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/testimonios",
+  "title": "Testimonios",
+  "category": "acemar",
+  "icon": "format-quote",
+  "description": "Slider de testimonios con foto, nombre, cargo y texto",
+  "keywords": [
+    "testimonios",
+    "slider",
+    "reviews",
+    "clientes"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "titulo": {
+      "type": "string",
+      "default": "Testimonios"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoplaySpeed": {
+      "type": "number",
+      "default": 4000
+    },
+    "cardBg": {
+      "type": "string",
+      "default": "#2d2d2d"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#C9A84C"
+    },
+    "testimonios": {
+      "type": "array",
+      "default": [
+        {
+          "nombre": "Arturo Calle",
+          "cargo": "Presidente Arturo Calle",
+          "testimonio": "\"Los productos de Acemar son de una belleza y un acabado excelente\"",
+          "fotoUrl": "",
+          "fotoId": 0
+        },
+        {
+          "nombre": "Javier Plata",
+          "cargo": "Vicepresidente Comercial Biomax",
+          "testimonio": "\"Es un producto de muy buena calidad y de una imagen impecable.\"",
+          "fotoUrl": "",
+          "fotoId": 0
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

@@ -119,11 +119,11 @@ const Edit = ( { attributes, setAttributes } ) => {
                             <MediaUploadCheck>
                                 <MediaUpload
                                   onSelect={ ( media ) => {
-                                        const updated = hitos.map( ( h, i ) =>
-                                            i === index ? { ...h, imageUrl: media.url, imageId: media.id } : h
-                                        );
-                                        setAttributes( { hitos: updated } );
-                                    } }
+                                            const updated = hitos.map( ( h, i ) =>
+                                                i === index ? { ...h, imageUrl: media.url, imageId: media.id } : h
+                                            );
+                                            setAttributes( { hitos: updated } );
+                                        } }
                                     allowedTypes={ [ 'image' ] }
                                     value={ hito.imageId }
                                     render={ ( { open } ) => (

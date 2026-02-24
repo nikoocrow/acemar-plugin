@@ -141,61 +141,52 @@
         overflow: hidden;
     }
 
-    &__nav-track {
-        position: relative;
-        display: flex;
-        align-items: center;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        scrollbar-width: none;
-        flex: 1;
-        padding: 10px 0;
+ &__nav-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; // ← distribuye uniformemente
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    flex: 1;
+    padding: 10px 20px;
 
-        &::-webkit-scrollbar { display: none; }
-    }
+    &::-webkit-scrollbar { display: none; }
+}
 
-    &__nav-line {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: #ddd;
-        transform: translateY(-50%);
-        z-index: 0;
-    }
+&__nav-item {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex: 1; // ← cada item toma espacio igual
+    padding: 0 8px;
+    transition: transform 0.3s;
+    min-width: 60px; // ← mínimo para que el año no se corte
 
-    &__nav-item {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        flex: 0 0 auto;
-        padding: 0 24px;
-        transition: transform 0.3s;
+    &:hover { transform: scale(1.1); }
 
-        &:hover { transform: scale(1.1); }
+    &.is-active {
+        .acemar-timeline__nav-dot {
+            background: var(--accent, #C9A84C);
+            transform: scale(1.5);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
+        }
 
-        &.is-active {
-            .acemar-timeline__nav-dot {
-                background: var(--accent, #C9A84C);
-                transform: scale(1.5);
-                box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
-            }
-
-            .acemar-timeline__nav-year {
-                color: var(--accent, #C9A84C);
-                font-weight: 700;
-                font-size: 0.95rem;
-                transform: translateY(-2px);
-            }
+        .acemar-timeline__nav-year {
+            color: var(--accent, #C9A84C);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transform: translateY(-2px);
         }
     }
+}
 
     &__nav-dot {
         width: 12px;

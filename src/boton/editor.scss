@@ -1,0 +1,14 @@
+.acemar-boton-wrapper {
+    padding: 8px 0;
+}
+
+.acemar-boton {
+    display: inline-block;
+    font-family: "Playfair Display", serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: default;
+    line-height: 1;
+    color: #000000 !important; // ← negro siempre en el editor
+}

@@ -1,0 +1,22 @@
+.acemar-boton-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.acemar-boton {
+    display: inline-block;
+    font-family: "Playfair Display", serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000000 !important; // ← negro siempre
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+
+    &:hover {
+        background: var(--hover-bg, #C9A84C) !important;
+        color: var(--hover-text, #000000) !important;
+        border-color: var(--hover-bg, #C9A84C) !important;
+    }
+}

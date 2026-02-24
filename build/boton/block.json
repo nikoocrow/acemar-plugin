@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/boton",
+  "title": "Botón Acemar",
+  "category": "acemar",
+  "icon": "button",
+  "description": "Botón personalizado con borde amarillo, hover y border radius",
+  "keywords": [
+    "boton",
+    "button",
+    "cta",
+    "link"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Leer artículo"
+    },
+    "url": {
+      "type": "string",
+      "default": ""
+    },
+    "target": {
+      "type": "string",
+      "default": "_self"
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    },
+    "borderColor": {
+      "type": "string",
+      "default": "#C9A84C"
+    },
+    "hoverBg": {
+      "type": "string",
+      "default": "#C9A84C"
+    },
+    "hoverTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "transparent"
+    },
+    "fontSize": {
+      "type": "number",
+      "default": 16
+    },
+    "paddingX": {
+      "type": "number",
+      "default": 32
+    },
+    "paddingY": {
+      "type": "number",
+      "default": 14
+    },
+    "align": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
