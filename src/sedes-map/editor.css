@@ -1,0 +1,163 @@
+/* ==========================================================
+   Acemar – Mapa de Sedes | Editor Styles
+   ========================================================== */
+
+.wp-block-acemar-sedes-map .acemar-sedes-editor-preview {
+    display: grid !important;
+    grid-template-columns: 380px 1fr !important;
+    min-height: 500px;
+    border: 1px solid #e0ddd6;
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__left {
+    padding: 28px 24px;
+    background: #fff;
+    border-right: 1px solid #e0ddd6;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__tag {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #b5955a !important;
+    font-weight: 600;
+    margin: 0 0 8px !important;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__title {
+    font-family: 'Italiana', sans-serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 400 !important;
+    color: #1a1a1a !important;
+    margin: 0 0 12px !important;
+    line-height: 1.25 !important;
+    padding: 0 !important;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__title::after {
+    display: none !important;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__desc {
+    font-size: 0.85rem !important;
+    color: #6b6b6b !important;
+    margin: 0 0 16px !important;
+    line-height: 1.6;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__search input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e0ddd6;
+    border-radius: 6px;
+    background: #f4f4f0;
+    font-size: 0.85rem;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card {
+    border: 1.5px solid #e0ddd6 !important;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background: #fff;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card__header strong {
+    font-family: 'Italiana', sans-serif !important;
+    font-size: 1rem !important;
+    color: #1a1a1a !important;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 6px 0 10px;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card__body span {
+    font-size: 0.8rem;
+    color: #6b6b6b;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card__actions .btn-outline {
+    padding: 7px 12px;
+    border: 1.5px solid #b5955a;
+    background: transparent;
+    color: #b5955a;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    cursor: default;
+}
+
+.wp-block-acemar-sedes-map .acemar-sede-card__actions .btn-solid {
+    padding: 7px 12px;
+    background: #b5955a;
+    color: #fff;
+    border: 1.5px solid #b5955a;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    cursor: default;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__right {
+    background: #f4f4f0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__map-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #6b6b6b;
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__map-placeholder small {
+    font-size: 0.8rem;
+    color: #b5955a;
+}
+
+.wp-block-acemar-sedes-map .acemar-sedes-preview__map-placeholder--warn {
+    color: #a0522d;
+    background: #fff8f0;
+    border-radius: 8px;
+    padding: 24px 32px;
+    border: 1px dashed #b5955a;
+}
+
+.acemar-sede-item {
+    background: #f9f9f7;
+    border: 1px solid #e0ddd6;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.acemar-sede-item .components-text-control__input,
+.acemar-sede-item .components-textarea-control__input {
+    font-size: 12px !important;
+}

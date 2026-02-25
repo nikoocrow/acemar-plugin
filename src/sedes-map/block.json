@@ -1,0 +1,61 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acemar/sedes-map",
+    "version": "1.0.0",
+    "title": "Acemar – Mapa de Sedes",
+    "category": "theme",
+    "icon": "location",
+    "description": "Muestra el mapa de sedes de Acemar con buscador y listado de ubicaciones.",
+    "keywords": [ "sedes", "mapa", "ubicaciones", "colombia" ],
+    "supports": {
+        "html": false,
+        "align": [ "full", "wide" ]
+    },
+    "attributes": {
+        "titulo": {
+            "type": "string",
+            "default": "Encuentra una Sede Acemar Cerca de Ti"
+        },
+        "descripcion": {
+            "type": "string",
+            "default": "Encuentra tu sede Acemar más cercana y conoce a los profesionales de confianza en toda Colombia."
+        },
+        "googleMapsApiKey": {
+            "type": "string",
+            "default": ""
+        },
+        "mapCenter": {
+            "type": "object",
+            "default": {
+                "lat": 4.570868,
+                "lng": -74.297333
+            }
+        },
+        "mapZoom": {
+            "type": "number",
+            "default": 6
+        },
+        "sedes": {
+            "type": "array",
+            "default": []
+        },
+        "markerSvgUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "markerWidth": {
+            "type": "number",
+            "default": 40
+        },
+        "markerHeight": {
+            "type": "number",
+            "default": 40
+        }
+    },
+ "editorScript": "file:./index.js",
+"editorStyle": "file:./index.css",
+"style":        "file:./style-frontend.css",
+"viewScript":   "file:./view.js",
+"render":       "file:./render.php"
+}
