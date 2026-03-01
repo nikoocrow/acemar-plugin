@@ -50,6 +50,8 @@ class Acemar_Blocks {
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/testimonios');
         register_block_type( ACEMAR_BLOCKS_PATH . 'build/boton' );
         register_block_type( ACEMAR_BLOCKS_PATH . 'build/sedes-map' );
+        register_block_type( ACEMAR_BLOCKS_PATH . 'build/recursos-tecnicos' );
+        register_block_type( ACEMAR_BLOCKS_PATH . 'build/recurso-card' );
     }
     
     public function register_block_category($categories, $post) {

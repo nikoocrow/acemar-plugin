@@ -1,0 +1,279 @@
+// ==========================================================
+// Acemar – Recursos Técnicos | Frontend
+// ==========================================================
+
+.acemar-recursos-tecnicos {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    padding: 60px 40px;
+    align-items: center;
+    background: #ffffff;
+    box-sizing: border-box;
+
+    // ── Columna izquierda ──────────────────────────────────
+    &__left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__titulo {
+        font-family: "Italiana", sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 400;
+        color: #1a1a1a;
+        margin: 0;
+        line-height: 1.1;
+        letter-spacing: 0.05em;
+        position: relative;
+        padding-bottom: 12px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent, #C9A84C);
+        }
+    }
+
+    &__desc {
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    &__btn {
+        display: inline-block;
+        padding: 14px 28px;
+        border: 2px solid #C9A84C;
+        color: #1a1a1a;
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background 0.25s, color 0.25s;
+        align-self: flex-start;
+
+        &:hover {
+            background: #C9A84C;
+            color: #ffffff;
+        }
+    }
+
+    // ── Columna derecha ────────────────────────────────────
+    &__right {
+        width: 100%;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    // ── Modo solo cards: full width, hasta 4 columnas ──────
+    &--solo-cards {
+        grid-template-columns: 1fr;
+        padding: 60px 40px;
+
+        .acemar-recursos-tecnicos__grid {
+            grid-template-columns: repeat(3, 1fr);
+
+            // 4+ cards → 4 columnas
+            &:has(.acemar-recurso-card:nth-child(4)) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    }
+
+    // ── Responsive ────────────────────────────────────────
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr 1.5fr;
+        gap: 40px;
+        padding: 50px 30px;
+
+        &--solo-cards {
+            grid-template-columns: 1fr;
+
+            .acemar-recursos-tecnicos__grid {
+                grid-template-columns: repeat(3, 1fr);
+
+                &:has(.acemar-recurso-card:nth-child(4)) {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        &--solo-cards .acemar-recursos-tecnicos__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        &__btn {
+            align-self: stretch;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        &--solo-cards .acemar-recursos-tecnicos__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// ── Card individual ────────────────────────────────────────
+.acemar-recurso-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &__image-wrap {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        aspect-ratio: 3 / 4;
+        background: #e8e8e8;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    // Overlay: siempre visible en mobile, hover en desktop
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            transparent 30%,
+            rgba(0, 0, 0, 0.65) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        gap: 12px;
+        transition: background 0.3s ease;
+    }
+
+    &__titulo-overlay {
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 1rem;
+        color: #ffffff;
+        font-weight: 400;
+    }
+
+    // Botones del hover — ocultos por defecto en desktop
+    &__hover-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 0.82rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.2s, color 0.2s;
+        font-weight: 500;
+
+        &--download {
+            background: #C9A84C;
+            color: #1a1a1a;
+
+            &:hover {
+                background: darken(#C9A84C, 10%);
+                color: #1a1a1a;
+            }
+        }
+
+        &--page {
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.4);
+            backdrop-filter: blur(4px);
+
+            &:hover {
+                background: rgba(255,255,255,0.25);
+            }
+        }
+    }
+
+    // Hover en desktop
+    @media (hover: hover) {
+        &__image-wrap:hover &__img {
+            transform: scale(1.04);
+        }
+
+        &__image-wrap:hover &__overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.15) 0%,
+                rgba(0,0,0,0.75) 100%
+            );
+        }
+
+        &__image-wrap:hover &__hover-btns {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    // En mobile siempre visibles los botones
+    @media (max-width: 768px) {
+        &__image-wrap {
+            aspect-ratio: 16 / 9;
+        }
+
+        &__hover-btns {
+            opacity: 1;
+            transform: none;
+            flex-direction: row;
+        }
+
+        &__btn {
+            flex: 1;
+            justify-content: center;
+        }
+    }
+
+    // Título debajo de la imagen
+    &__titulo-below {
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 0.9rem;
+        color: #1a1a1a;
+        margin: 0;
+        text-align: center;
+    }
+}

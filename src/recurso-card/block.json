@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/recurso-card",
+  "title": "Recurso Card",
+  "category": "acemar",
+  "icon": "media-document",
+  "description": "Card individual de recurso técnico",
+  "keywords": ["recurso", "card", "brochure"],
+  "textdomain": "acemar-blocks",
+  "parent": ["acemar/recursos-tecnicos"],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "default": "Nombre del Recurso"
+    },
+    "imagenUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imagenId": {
+      "type": "number",
+      "default": 0
+    },
+    "imagenAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "urlDescarga": {
+      "type": "string",
+      "default": ""
+    },
+    "urlPagina": {
+      "type": "string",
+      "default": ""
+    },
+    "textoDescarga": {
+      "type": "string",
+      "default": "Descargar"
+    },
+    "textoPagina": {
+      "type": "string",
+      "default": "Ver más"
+    }
+  },
+  "editorScript": "file:./index.js"
+}

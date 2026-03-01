@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/recursos-tecnicos",
+  "title": "Recursos Técnicos",
+  "category": "acemar",
+  "icon": "media-document",
+  "description": "Sección de recursos técnicos con texto a la izquierda y cards a la derecha",
+  "keywords": ["recursos", "técnicos", "brochure", "descargas"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "mostrarTexto": {
+      "type": "boolean",
+      "default": true
+    },
+    "titulo": {
+      "type": "string",
+      "default": "RECURSOS TÉCNICOS"
+    },
+    "descripcion": {
+      "type": "string",
+      "default": "¿Necesitas archivos CAD o documentación técnica? Encuéntralos en nuestra sección de Recursos Técnicos."
+    },
+    "botonTexto": {
+      "type": "string",
+      "default": "RECURSOS TÉCNICOS"
+    },
+    "botonUrl": {
+      "type": "string",
+      "default": "#"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js"
+}
