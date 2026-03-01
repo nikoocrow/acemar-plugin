@@ -18,6 +18,10 @@
       "type": "string",
       "default": "Nombre del Recurso"
     },
+    "categoria": {
+      "type": "string",
+      "default": ""
+    },
     "imagenUrl": {
       "type": "string",
       "default": ""

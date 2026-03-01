@@ -284,3 +284,234 @@
         aspect-ratio: 16 / 7;
     }
 }
+
+// ==========================================================
+// Filtros de categorías — 4 estilos
+// ==========================================================
+
+.acemar-rt-filter {
+    margin-bottom: 24px;
+}
+
+// ── A: Pills ──────────────────────────────────────────────
+.acemar-rt-filter--pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    button {
+        padding: 8px 18px;
+        border-radius: 100px;
+        border: 1.5px solid #d4c5a0;
+        background: transparent;
+        color: #6b6b6b;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            border-color: #C9A84C;
+            color: #C9A84C;
+        }
+
+        &.active {
+            background: #C9A84C;
+            border-color: #C9A84C;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+    }
+}
+
+// ── B: Underline Tabs ─────────────────────────────────────
+.acemar-rt-filter--tabs {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e8e4dc;
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        background: transparent;
+        color: #999;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.2s;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #C9A84C;
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        &:hover { color: #1a1a1a; }
+
+        &.active {
+            color: #1a1a1a;
+            font-weight: 600;
+
+            &::after { transform: scaleX(1); }
+        }
+    }
+}
+
+// ── C: Dropdown ───────────────────────────────────────────
+.acemar-rt-filter--dropdown {
+    .acemar-rt-filter__dropdown-wrap {
+        position: relative;
+        display: inline-block;
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #C9A84C;
+            pointer-events: none;
+        }
+    }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        padding: 12px 48px 12px 20px;
+        border: 1.5px solid #d4c5a0;
+        border-radius: 4px;
+        background: #fff;
+        color: #1a1a1a;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        min-width: 240px;
+        transition: border-color 0.2s;
+
+        &:focus {
+            outline: none;
+            border-color: #C9A84C;
+        }
+    }
+}
+
+// ── D: Chips con contador ─────────────────────────────────
+.acemar-rt-filter--chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 6px;
+        border: 1.5px solid #e0ddd6;
+        background: #faf9f6;
+        color: #555;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            border-color: #C9A84C;
+            color: #1a1a1a;
+        }
+
+        &.active {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+            color: #fff;
+
+            .count {
+                background: #C9A84C;
+                color: #1a1a1a;
+                font-weight: 700;
+            }
+        }
+
+        .count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e8e4dc;
+            color: #888;
+            font-size: 0.72rem;
+            transition: all 0.2s;
+        }
+    }
+}
+
+// ── Sin resultados ────────────────────────────────────────
+.acemar-rt-no-results {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    color: #aaa;
+    font-size: 0.9rem;
+    grid-column: 1 / -1;
+}
+
+// ── Badge de categoría en editor ─────────────────────────
+.acemar-recurso-card__cat-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(201, 168, 76, 0.9);
+    color: #1a1a1a;
+    font-size: 0.7rem;
+    font-family: 'Tenor Sans', sans-serif;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    z-index: 10;
+}
+
+// ── Responsive filtros ────────────────────────────────────
+@media (max-width: 768px) {
+    .acemar-rt-filter--tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 2px;
+
+        button { white-space: nowrap; }
+    }
+
+    .acemar-rt-filter--pills,
+    .acemar-rt-filter--chips {
+        gap: 6px;
+
+        button { font-size: 0.78rem; padding: 7px 14px; }
+    }
+
+    .acemar-rt-filter--dropdown select {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .acemar-rt-filter--dropdown .acemar-rt-filter__dropdown-wrap {
+        width: 100%;
+    }
+}

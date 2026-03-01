@@ -5,34 +5,118 @@ import {
     MediaUploadCheck,
     InspectorControls,
 } from '@wordpress/block-editor';
-import { Button, TextControl, PanelBody } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
+import { Button, TextControl, PanelBody, PanelRow, SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
 
-const Edit = ({ attributes, setAttributes }) => {
+const Edit = ({ attributes, setAttributes, clientId }) => {
     const {
-        titulo,
-        imagenUrl,
-        imagenId,
-        imagenAlt,
-        urlDescarga,
-        urlPagina,
-        textoDescarga,
-        textoPagina,
+        titulo, categoria, imagenUrl, imagenId, imagenAlt,
+        urlDescarga, urlPagina, textoDescarga, textoPagina,
     } = attributes;
 
     const blockProps = useBlockProps({ className: 'acemar-recurso-card' });
 
+    // Leer categorias del bloque padre
+    const categoriasOpciones = useSelect((select) => {
+        const { getBlockParents, getBlock } = select('core/block-editor');
+        const parents = getBlockParents(clientId);
+        if (!parents.length) return [];
+
+        const parentBlock = getBlock(parents[parents.length - 1]);
+        const raw = parentBlock?.attributes?.categorias || '';
+        const cats = raw.split(',').map(c => c.trim()).filter(Boolean);
+
+        return [
+            { label: '— Sin categoría —', value: '' },
+            ...cats.map(c => ({ label: c, value: c })),
+        ];
+    }, [clientId]);
+
+    const showCategorySelect = categoriasOpciones.length > 1;
+
     return (
         <>
             <InspectorControls>
-                <PanelBody title="Configuración de la card" initialOpen={ true }>
+                {/* ── Imagen ── */}
+                <PanelBody title="Imagen" initialOpen={ true }>
+                    { imagenUrl ? (
+                        <>
+                            <PanelRow>
+                                <img
+                                    src={ imagenUrl }
+                                    alt={ imagenAlt }
+                                    style={{ width: '100%', borderRadius: '6px', marginBottom: '8px' }}
+                                />
+                            </PanelRow>
+                            <PanelRow>
+                                <MediaUploadCheck>
+                                    <MediaUpload
+                                        onSelect={ (media) => setAttributes({
+                                            imagenUrl: media.url,
+                                            imagenId: media.id,
+                                            imagenAlt: media.alt || titulo,
+                                        }) }
+                                        allowedTypes={ ['image'] }
+                                        value={ imagenId }
+                                        render={ ({ open }) => (
+                                            <Button onClick={ open } variant="secondary" style={{ marginRight: '8px' }}>
+                                                Cambiar
+                                            </Button>
+                                        ) }
+                                    />
+                                </MediaUploadCheck>
+                                <Button
+                                    onClick={ () => setAttributes({ imagenUrl: '', imagenId: 0 }) }
+                                    variant="tertiary"
+                                    isDestructive
+                                >
+                                    Quitar
+                                </Button>
+                            </PanelRow>
+                        </>
+                    ) : (
+                        <PanelRow>
+                            <MediaUploadCheck>
+                                <MediaUpload
+                                    onSelect={ (media) => setAttributes({
+                                        imagenUrl: media.url,
+                                        imagenId: media.id,
+                                        imagenAlt: media.alt || titulo,
+                                    }) }
+                                    allowedTypes={ ['image'] }
+                                    value={ imagenId }
+                                    render={ ({ open }) => (
+                                        <Button onClick={ open } variant="primary" style={{ width: '100%', justifyContent: 'center' }}>
+                                            + Seleccionar imagen
+                                        </Button>
+                                    ) }
+                                />
+                            </MediaUploadCheck>
+                        </PanelRow>
+                    ) }
+                </PanelBody>
+
+                {/* ── Contenido ── */}
+                <PanelBody title="Contenido" initialOpen={ true }>
                     <TextControl
                         label="Título"
                         value={ titulo }
                         onChange={ (val) => setAttributes({ titulo: val }) }
                         placeholder="Ej: Brochure Fachadas"
                     />
+
+                    { showCategorySelect && (
+                        <SelectControl
+                            label="Categoría"
+                            value={ categoria }
+                            options={ categoriasOpciones }
+                            onChange={ (val) => setAttributes({ categoria: val }) }
+                            help="Define a qué categoría pertenece esta card para el filtro."
+                        />
+                    ) }
+
                     <TextControl
                         label="Texto botón descarga"
                         value={ textoDescarga }
@@ -60,6 +144,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 </PanelBody>
             </InspectorControls>
 
+            {/* Canvas — solo preview */}
             <div { ...blockProps }>
                 <div className="acemar-recurso-card__image-wrap">
                     { imagenUrl ? (
@@ -72,52 +157,14 @@ const Edit = ({ attributes, setAttributes }) => {
                             <div className="acemar-recurso-card__overlay">
                                 <span className="acemar-recurso-card__titulo-overlay">{ titulo }</span>
                             </div>
-                            <div className="acemar-recurso-card__editor-actions">
-                                <MediaUploadCheck>
-                                    <MediaUpload
-                                        onSelect={ (media) => setAttributes({
-                                            imagenUrl: media.url,
-                                            imagenId: media.id,
-                                            imagenAlt: media.alt || titulo,
-                                        }) }
-                                        allowedTypes={ ['image'] }
-                                        value={ imagenId }
-                                        render={ ({ open }) => (
-                                            <Button onClick={ open } variant="secondary" size="small">
-                                                Cambiar
-                                            </Button>
-                                        ) }
-                                    />
-                                </MediaUploadCheck>
-                                <Button
-                                    onClick={ () => setAttributes({ imagenUrl: '', imagenId: 0 }) }
-                                    variant="tertiary"
-                                    isDestructive
-                                    size="small"
-                                >
-                                    Quitar
-                                </Button>
-                            </div>
                         </>
                     ) : (
                         <div className="acemar-recurso-card__placeholder">
-                            <MediaUploadCheck>
-                                <MediaUpload
-                                    onSelect={ (media) => setAttributes({
-                                        imagenUrl: media.url,
-                                        imagenId: media.id,
-                                        imagenAlt: media.alt || titulo,
-                                    }) }
-                                    allowedTypes={ ['image'] }
-                                    value={ imagenId }
-                                    render={ ({ open }) => (
-                                        <Button onClick={ open } variant="primary">
-                                            + Seleccionar imagen
-                                        </Button>
-                                    ) }
-                                />
-                            </MediaUploadCheck>
+                            <span style={{ color: '#999', fontSize: '13px' }}>Sin imagen</span>
                         </div>
+                    ) }
+                    { categoria && (
+                        <span className="acemar-recurso-card__cat-badge">{ categoria }</span>
                     ) }
                 </div>
                 <p className="acemar-recurso-card__titulo-below">{ titulo || 'Nombre del Recurso' }</p>
@@ -127,9 +174,12 @@ const Edit = ({ attributes, setAttributes }) => {
 };
 
 const Save = ({ attributes }) => {
-    const { titulo, imagenUrl, imagenAlt, urlDescarga, urlPagina, textoDescarga, textoPagina } = attributes;
+    const { titulo, categoria, imagenUrl, imagenAlt, urlDescarga, urlPagina, textoDescarga, textoPagina } = attributes;
 
-    const blockProps = useBlockProps.save({ className: 'acemar-recurso-card' });
+    const blockProps = useBlockProps.save({
+        className: 'acemar-recurso-card',
+        'data-categoria': categoria || '',
+    });
 
     return (
         <div { ...blockProps }>

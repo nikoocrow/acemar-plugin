@@ -36,6 +36,18 @@
     "botonUrl": {
       "type": "string",
       "default": "#"
+    },
+    "mostrarFiltro": {
+      "type": "boolean",
+      "default": false
+    },
+    "filterStyle": {
+      "type": "string",
+      "default": "tabs"
+    },
+    "categorias": {
+      "type": "string",
+      "default": "Paneles, Acústicos, Puertas, Pisos, Láminas, Triplex"
     }
   },
   "editorScript": "file:./index.js",
