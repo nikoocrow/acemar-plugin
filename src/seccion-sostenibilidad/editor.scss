@@ -1,0 +1,58 @@
+// ==========================================================
+// Acemar – Sección Sostenibilidad | Editor
+// ==========================================================
+
+.wp-block-acemar-seccion-sostenibilidad {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.acemar-seccion-sostenibilidad {
+    // Placeholder imagen
+    &__imagen-placeholder {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 16px;
+        background: #f0ede8;
+        border: 2px dashed #d4c5a0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.85rem;
+    }
+
+    // RichText en editor
+    &__contenido {
+        .block-editor-rich-text__editable {
+            outline: none;
+        }
+
+        p:empty::before {
+            content: attr(data-placeholder);
+            color: #ccc;
+        }
+    }
+
+    // Preview botón siempre visible en editor
+    &__btn-wrap--preview {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    // Indicador de fondo en editor
+    &--fondo-negro {
+        .acemar-seccion-sostenibilidad__imagen-placeholder {
+            background: #2a2a2a;
+            border-color: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.4);
+        }
+    }
+}
+
+// Botón siempre visible en editor
+.acemar-seccion-sostenibilidad__btn-wrap {
+    opacity: 1 !important;
+    transform: none !important;
+}
