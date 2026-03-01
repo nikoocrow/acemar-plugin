@@ -124,7 +124,7 @@
         }
 
         &--solo-cards .acemar-recursos-tecnicos__grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
         }
 
         &__btn {
@@ -133,11 +133,7 @@
         }
     }
 
-    @media (max-width: 480px) {
-        &--solo-cards .acemar-recursos-tecnicos__grid {
-            grid-template-columns: 1fr;
-        }
-    }
+
 }
 
 // ── Card individual ────────────────────────────────────────
@@ -275,5 +271,16 @@
         color: #1a1a1a;
         margin: 0;
         text-align: center;
+    }
+}
+
+// Fix mobile - forzar 1 columna en todas las variantes
+@media (max-width: 768px) {
+    .acemar-recursos-tecnicos__grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .acemar-recurso-card__image-wrap {
+        aspect-ratio: 16 / 7;
     }
 }
