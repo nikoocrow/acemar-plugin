@@ -17,6 +17,10 @@ define('ACEMAR_BLOCKS_VERSION', '1.0.4');
 define('ACEMAR_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('ACEMAR_BLOCKS_URL', plugin_dir_url(__FILE__));
 
+// ── Includes ──────────────────────────────────────────────────────
+require_once ACEMAR_BLOCKS_PATH . 'includes/cpt-proyecto.php';
+require_once ACEMAR_BLOCKS_PATH . 'includes/rest-proyectos.php';
+
 class Acemar_Blocks {
     
     private static $instance = null;
@@ -48,11 +52,12 @@ class Acemar_Blocks {
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/cifras-hero');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/timeline');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/testimonios');
-        register_block_type(ACEMAR_BLOCKS_PATH . 'build/boton' );
-        register_block_type(ACEMAR_BLOCKS_PATH . 'build/sedes-map' );
-        register_block_type(ACEMAR_BLOCKS_PATH . 'build/recursos-tecnicos' );
-        register_block_type(ACEMAR_BLOCKS_PATH . 'build/recurso-card' );
-        register_block_type(ACEMAR_BLOCKS_PATH . 'build/seccion-sostenibilidad' );
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/boton');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/sedes-map');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/recursos-tecnicos');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/recurso-card');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/seccion-sostenibilidad');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/proyectos-archive');
     }
     
     public function register_block_category($categories, $post) {
@@ -99,7 +104,6 @@ class Acemar_Blocks {
             );
         }
 
-        // ← TESTIMONIOS DENTRO DEL MÉTODO
         if ( has_block('acemar/testimonios') ) {
             wp_enqueue_script(
                 'acemar-testimonios-frontend',
@@ -107,6 +111,16 @@ class Acemar_Blocks {
                 [],
                 filemtime(ACEMAR_BLOCKS_PATH . 'build/testimonios/frontend.js'),
                 true
+            );
+        }
+
+        if ( has_block('acemar/proyectos-archive') ) {
+            wp_localize_script(
+                'acemar-proyectos-archive-view-script',
+                'acemar_rest',
+                [
+                    'nonce' => wp_create_nonce('wp_rest'),
+                ]
             );
         }
     }

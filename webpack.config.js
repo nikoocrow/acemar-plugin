@@ -40,6 +40,9 @@ module.exports = {
         'recursos-tecnicos/frontend':   path.resolve(__dirname, 'src/recursos-tecnicos/frontend.js'),
         'recurso-card/index':           path.resolve(__dirname, 'src/recurso-card/index.js'),
         'seccion-sostenibilidad/index': path.resolve(__dirname, 'src/seccion-sostenibilidad/index.js'),
+        'proyectos-archive/index':      path.resolve(__dirname, 'src/proyectos-archive/index.js'),
+        'proyectos-archive/frontend':   path.resolve(__dirname, 'src/proyectos-archive/frontend.js'),
+
     },
     output: {
         ...defaultConfig.output,

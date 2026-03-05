@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/proyectos-archive",
+  "title": "Proyectos – Archivo",
+  "category": "acemar",
+  "icon": "grid-view",
+  "description": "Grid masonry de proyectos con filtros por Segmento, Uso y Tipo de Madera.",
+  "keywords": ["proyectos", "archivo", "filtros", "masonry", "galeria"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "default": ""
+    },
+    "subtitulo": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php"
+}
