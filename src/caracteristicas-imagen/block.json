@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/caracteristicas-imagen",
+  "title": "Características con Imagen",
+  "category": "acemar",
+  "icon": "grid-view",
+  "description": "Grid de iconos con texto + imagen lateral. Imagen a izquierda o derecha.",
+  "keywords": ["características", "iconos", "imagen", "features"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "align": { "type": "string", "default": "full" },
+    "imagenPosicion": { "type": "string", "default": "derecha" },
+    "fondoColor": { "type": "string", "default": "gris" },
+    "imagenUrl": { "type": "string", "default": "" },
+    "imagenId": { "type": "number", "default": 0 },
+    "imagenAlt": { "type": "string", "default": "" },
+    "titulo": { "type": "string", "default": "" },
+    "items": {
+      "type": "array",
+      "default": [
+        { "id": 1, "iconoUrl": "", "iconoId": 0, "texto": "Característica 1" },
+        { "id": 2, "iconoUrl": "", "iconoId": 0, "texto": "Característica 2" },
+        { "id": 3, "iconoUrl": "", "iconoId": 0, "texto": "Característica 3" },
+        { "id": 4, "iconoUrl": "", "iconoId": 0, "texto": "Característica 4" }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

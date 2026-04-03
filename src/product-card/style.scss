@@ -63,7 +63,7 @@
         }
 
         // DESKTOP: Contenido sobre la imagen con efecto hover
-        @media (min-width: 768px) {
+        @media (min-width: 1025px) {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -97,7 +97,7 @@
     }
 
     // DESKTOP: Mostrar contenido al hacer hover
-    @media (min-width: 768px) {
+    @media (min-width: 1025px) {
         &:hover &__content {
             opacity: 1;
             transform: translateY(0);
@@ -111,7 +111,7 @@
 }
 
 // Responsive: Ajustar tamaños de fuente en móvil
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
     .acemar-product-card {
         &__content {
             h3, .acemar-product-card__heading {

@@ -1,0 +1,331 @@
+// ============================================
+// Selector Muestras — Frontend Styles
+// ============================================
+
+.acemar-selector-muestras {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    // ── Header ──────────────────────────────
+    &__header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    &__titulo {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 400;
+        color: #1a1a1a;
+        margin: 0 0 0.5rem;
+    }
+
+    &__accent-line {
+        display: block;
+        width: 48px;
+        height: 3px;
+        margin: 0.5rem auto 1.25rem;
+        border-radius: 2px;
+    }
+
+    &__descripcion {
+        color: #666;
+        font-size: 1rem;
+        max-width: 640px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    // ── Layout: tabs arriba + contenido abajo ─
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        align-items: center;
+    }
+
+    // ── Pestañas: cards cuadradas con número ─
+    &__tabs {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        width: 100% !important;
+    }
+
+    &__tab {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0.75rem 2rem !important;
+        background: transparent !important;
+        border: 1px solid var(--sm-accent, #C8A96A) !important;
+        border-radius: 0 !important;
+        cursor: pointer !important;
+        transition: background 0.25s ease, color 0.25s ease !important;
+
+        .acemar-sm__tab-number {
+            display: none !important;
+        }
+
+        .acemar-sm__tab-label {
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.1em !important;
+            text-transform: uppercase !important;
+            color: #1a1a1a !important;
+            line-height: 1 !important;
+            transition: color 0.25s ease !important;
+        }
+
+        &:hover {
+            background: var(--sm-accent, #C8A96A) !important;
+            border-color: var(--sm-accent, #C8A96A) !important;
+
+            .acemar-sm__tab-label {
+                color: #1a1a1a !important;
+            }
+        }
+
+        &.is-active {
+            background: var(--sm-accent, #C8A96A) !important;
+            border-color: var(--sm-accent, #C8A96A) !important;
+
+            .acemar-sm__tab-label {
+                color: #1a1a1a !important;
+            }
+        }
+
+        .acemar-sm__tab-icon {
+            display: none !important;
+        }
+    }
+
+    // ── Paneles: ancho completo ───────────────
+    &__panels {
+        width: 100%;
+    }
+
+    // ── Panel del contenido activo ───────────
+    &__panel {
+        display: none;
+
+        &.is-active {
+            display: block;
+            animation: smFadeIn 0.3s ease both;
+        }
+    }
+
+    &__panel-titulo {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0 0 0.25rem;
+        text-align: center;
+    }
+
+    &__panel-accent {
+        display: block;
+        width: 40px;
+        height: 2px;
+        margin: 0 auto 1.5rem;
+        border-radius: 2px;
+    }
+
+    &__panel-desc {
+        color: #777;
+        font-size: 0.9rem;
+        margin: 0 0 1.5rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    // ── Grilla de muestras ───────────────────
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1.25rem;
+
+        @media (max-width: 480px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    // ── Card de muestra ──────────────────────
+    &__item {
+        cursor: pointer;
+        text-align: center;
+
+        &:hover .acemar-selector-muestras__item-img {
+            transform: scale(1.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__item-img-wrap {
+        overflow: hidden;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        aspect-ratio: 1 / 1;
+        background: #eee;
+    }
+
+    &__item-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: block;
+    }
+
+    &__item-nombre {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #444;
+        line-height: 1.3;
+    }
+
+    // ── Estado vacío y cargando ──────────────
+    &__loading,
+    &__empty {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem 1rem;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    &__loading::after {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-top-color: #999;
+        border-radius: 50%;
+        animation: smSpin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-left: 8px;
+    }
+}
+
+// ── Lightbox ────────────────────────────────
+.acemar-sm-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        cursor: pointer;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        max-width: min(90vw, 600px);
+        width: 100%;
+        text-align: center;
+        transform: scale(0.92);
+        transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+        .is-open & {
+            transform: scale(1);
+        }
+    }
+
+    &__img {
+        width: 100%;
+        border-radius: 8px;
+        display: block;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    &__nombre {
+        margin-top: 1rem;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    &__close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        line-height: 1;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+
+        &:hover { opacity: 1; }
+    }
+
+    &__nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: #fff;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.25rem;
+        transition: background 0.2s;
+
+        &:hover { background: rgba(255, 255, 255, 0.3); }
+
+        &--prev { left: -56px; }
+        &--next { right: -56px; }
+
+        @media (max-width: 600px) {
+            &--prev { left: 0; }
+            &--next { right: 0; }
+        }
+    }
+}
+
+// ── Animaciones ─────────────────────────────
+@keyframes smFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes smSpin {
+    to { transform: rotate(360deg); }
+}
+
+// ── Full width ───────────────────────────────
+.wp-block-acemar-selector-muestras.alignfull,
+.wp-block-acemar-selector-muestras.alignwide {
+    .acemar-selector-muestras {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}

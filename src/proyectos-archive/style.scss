@@ -63,6 +63,7 @@ $transition:     0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-wrap: wrap;
     gap: 10px;
     align-items: center;
+    justify-content: center;
     margin-bottom: 40px;
 }
 
@@ -305,7 +306,7 @@ $transition:     0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     // ── DESKTOP: hover activa overlay ─────────────────────────
-    @media (min-width: 769px) {
+    @media (min-width: 1025px) {
         &__link:hover &__overlay {
             opacity: 1;
         }
@@ -316,7 +317,7 @@ $transition:     0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     // ── MOBILE: card blanca con info debajo ───────────────────
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         background: #fff;
         box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
         border-radius: $radius;

@@ -102,7 +102,7 @@
     }
 
     // HOVER DESKTOP: Mostrar descripción
-    @media (min-width: 769px) {
+    @media (min-width: 1025px) {
         &:hover {
             .acemar-project-card__description {
                 opacity: 1;
@@ -121,7 +121,7 @@
     // ============================================
     // MOBILE: Mostrar todo sin hover
     // ============================================
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         &__image-wrapper {
             height: 400px;
         }

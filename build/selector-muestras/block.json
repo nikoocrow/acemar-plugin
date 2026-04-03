@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/selector-muestras",
+  "title": "Selector de Muestras",
+  "category": "acemar",
+  "icon": "art",
+  "description": "Selector interactivo de acabados, terminaciones y colores con pestañas, grilla y lightbox.",
+  "keywords": [
+    "acabados",
+    "terminaciones",
+    "colores",
+    "muestras",
+    "selector",
+    "texturas"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "titulo": {
+      "type": "string",
+      "default": "Selector de acabados"
+    },
+    "descripcion": {
+      "type": "string",
+      "default": "Descubre nuestra amplia gama de acabados, diseñados para cada espacio y estilo."
+    },
+    "tipoSelector": {
+      "type": "string",
+      "default": "acabado"
+    },
+    "etiquetaTab1": {
+      "type": "string",
+      "default": "Colección 1"
+    },
+    "slugTab1": {
+      "type": "string",
+      "default": ""
+    },
+    "etiquetaTab2": {
+      "type": "string",
+      "default": "Colección 2"
+    },
+    "slugTab2": {
+      "type": "string",
+      "default": ""
+    },
+    "etiquetaTab3": {
+      "type": "string",
+      "default": "Colección 3"
+    },
+    "slugTab3": {
+      "type": "string",
+      "default": ""
+    },
+    "mostrarTab2": {
+      "type": "boolean",
+      "default": true
+    },
+    "mostrarTab3": {
+      "type": "boolean",
+      "default": true
+    },
+    "colorAccent": {
+      "type": "string",
+      "default": "#C8A96A"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php"
+}

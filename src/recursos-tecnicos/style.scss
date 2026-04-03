@@ -10,6 +10,8 @@
     align-items: center;
     background: #ffffff;
     box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
 
     // ── Columna izquierda ──────────────────────────────────
     &__left {
@@ -71,6 +73,7 @@
     // ── Columna derecha ────────────────────────────────────
     &__right {
         width: 100%;
+        min-width: 0; // Evita que el hijo de grid desborde su columna
     }
 
     &__grid {
@@ -95,41 +98,49 @@
     }
 
     // ── Responsive ────────────────────────────────────────
+
+    // iPad / tablet (≤1024px): layout 1 columna, grid 2 columnas
     @media (max-width: 1024px) {
-        grid-template-columns: 1fr 1.5fr;
-        gap: 40px;
-        padding: 50px 30px;
-
-        &--solo-cards {
-            grid-template-columns: 1fr;
-
-            .acemar-recursos-tecnicos__grid {
-                grid-template-columns: repeat(3, 1fr);
-
-                &:has(.acemar-recurso-card:nth-child(4)) {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-        }
-    }
-
-    @media (max-width: 768px) {
         grid-template-columns: 1fr;
         gap: 40px;
         padding: 40px 20px;
 
         &__grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
         }
 
-        &--solo-cards .acemar-recursos-tecnicos__grid {
+        &--solo-cards {
             grid-template-columns: 1fr;
+            padding: 40px 20px;
+
+            .acemar-recursos-tecnicos__grid,
+            .acemar-recursos-tecnicos__grid:has(.acemar-recurso-card:nth-child(4)) {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         &__btn {
             align-self: stretch;
             text-align: center;
+        }
+    }
+
+    // Mobile (≤600px): 1 columna
+    @media (max-width: 600px) {
+        padding: 30px 16px;
+
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+
+        &--solo-cards {
+            padding: 30px 16px;
+
+            .acemar-recursos-tecnicos__grid,
+            .acemar-recursos-tecnicos__grid:has(.acemar-recurso-card:nth-child(4)) {
+                grid-template-columns: 1fr;
+            }
         }
     }
 
@@ -247,7 +258,7 @@
     }
 
     // En mobile siempre visibles los botones
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         &__image-wrap {
             aspect-ratio: 16 / 9;
         }
@@ -255,11 +266,10 @@
         &__hover-btns {
             opacity: 1;
             transform: none;
-            flex-direction: row;
+            flex-direction: column;
         }
 
         &__btn {
-            flex: 1;
             justify-content: center;
         }
     }
@@ -274,14 +284,19 @@
     }
 }
 
-// Fix mobile - forzar 1 columna en todas las variantes
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .acemar-recurso-card__image-wrap {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 600px) {
     .acemar-recursos-tecnicos__grid {
         grid-template-columns: 1fr !important;
     }
 
     .acemar-recurso-card__image-wrap {
-        aspect-ratio: 16 / 7;
+        aspect-ratio: 4 / 3;
     }
 }
 
@@ -489,7 +504,7 @@
 }
 
 // ── Responsive filtros ────────────────────────────────────
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .acemar-rt-filter--tabs {
         overflow-x: auto;
         flex-wrap: nowrap;

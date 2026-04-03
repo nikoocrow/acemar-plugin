@@ -6,10 +6,10 @@
 .acemar-sedes-map {
     --acemar-gold:       #C9A84C;
     --acemar-gold-light: #d4b47a;
-    --acemar-dark:       #1a1a1a;
+    --acemar-dark:       #303131;
     --acemar-text:       #3a3a3a;
     --acemar-muted:      #6b6b6b;
-    --acemar-bg:         #1e1e1e;
+    --acemar-bg:         #303131;
     --acemar-white:      #ffffff;
     --acemar-border:     rgba(255,255,255,0.08);
     --acemar-radius:     6px;
@@ -32,7 +32,7 @@
     display: flex;
     flex-direction: column;
     padding: 40px 32px;
-    background: #1e1e1e;
+    background: #303131;
     border-right: 1px solid rgba(255,255,255,0.08);
     overflow-y: auto;
     max-height: var(--map-height);

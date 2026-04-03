@@ -60,14 +60,10 @@
             width: auto;
             height: auto;
             object-fit: contain;
-            filter: grayscale(100%);
-            opacity: 0.7;
             transition: all 0.3s ease;
         }
-        
+
         &:hover img {
-            filter: grayscale(0%);
-            opacity: 1;
             transform: scale(1.05);
         }
     }
@@ -114,47 +110,30 @@
             font-size: 2rem;
         }
         
-        // En mobile: grid vertical sin animación
-        &__container {
-            overflow: visible;
-        }
-        
         &__track {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            animation: none !important;
-            width: 100%;
-            
-            // Mostrar solo los primeros logos (no duplicados)
-            .acemar-brands-showcase__logo {
-                &:nth-child(n+9) {
-                    display: none;
-                }
-            }
+            gap: 40px;
         }
-        
+
         &__logo {
-            width: 100%;
+            width: 140px;
             height: 80px;
-            
-            img {
-                filter: grayscale(0%);
-                opacity: 1;
-            }
         }
     }
     
     @media (max-width: 480px) {
         padding: 40px 20px;
-        
+
         &__title {
             font-size: 1.8rem;
         }
-        
+
         &__track {
-            grid-template-columns: 1fr;
             gap: 25px;
+        }
+
+        &__logo {
+            width: 110px;
+            height: 65px;
         }
     }
 }

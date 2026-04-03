@@ -3,8 +3,8 @@
   "apiVersion": 3,
   "name": "acemar/sedes-map",
   "version": "1.0.0",
-  "title": "Acemar – Mapa de Sedes",
-  "category": "theme",
+  "title": "Mapa de Sedes",
+  "category": "acemar",
   "icon": "location",
   "description": "Muestra el mapa de sedes de Acemar con buscador y listado de ubicaciones.",
   "keywords": [
