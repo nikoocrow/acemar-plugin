@@ -20,6 +20,7 @@ define('ACEMAR_BLOCKS_URL', plugin_dir_url(__FILE__));
 // ── Includes ──────────────────────────────────────────────────────
 require_once ACEMAR_BLOCKS_PATH . 'includes/cpt-proyecto.php';
 require_once ACEMAR_BLOCKS_PATH . 'includes/cpt-muestra.php';
+require_once ACEMAR_BLOCKS_PATH . 'includes/cpt-puerta.php';
 require_once ACEMAR_BLOCKS_PATH . 'includes/rest-proyectos.php';
 
 
@@ -64,6 +65,7 @@ class Acemar_Blocks {
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/proyectos-archive');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/selector-muestras');
         register_block_type(ACEMAR_BLOCKS_PATH . 'build/caracteristicas-imagen');
+        register_block_type(ACEMAR_BLOCKS_PATH . 'build/puertas-grid');
     }
     
     public function register_block_category($categories, $post) {

@@ -1,0 +1,329 @@
+// ============================================================
+// Acemar – Puertas Grid | style.scss
+// ============================================================
+
+$accent:      #C8A96E;
+$accent-dark: #a8894e;
+$dark:        #1A1A1A;
+$mid:         #4A4A4A;
+$light-bg:    #F5F2EE;
+$border:      #D9D4CC;
+$radius:      10px;
+$transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ── Bloque wrapper ────────────────────────────────────────────
+.acemar-puertas-grid {
+    padding: 64px 20px;
+    font-family: 'Tenor Sans', sans-serif;
+
+    @media (min-width: 768px) {
+        padding: 64px 40px;
+    }
+}
+
+// ── Header ────────────────────────────────────────────────────
+.acemar-puertas-grid__header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.acemar-puertas-grid__titulo {
+    font-family: 'Italiana', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: $dark;
+    margin: 0;
+    letter-spacing: 0.02em;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 44px;
+        height: 3px;
+        background: $accent;
+        margin: 14px auto 0;
+    }
+}
+
+.acemar-puertas-grid__empty {
+    text-align: center;
+    color: $mid;
+    padding: 60px 0;
+}
+
+// ── Grid ──────────────────────────────────────────────────────
+.acemar-puertas-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+// ── Tarjeta ───────────────────────────────────────────────────
+.acemar-puerta-card {
+    background: #fff;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    transition: box-shadow $transition, transform $transition;
+    animation: acemar-puerta-card-in 0.45s ease both;
+
+    &:hover {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes acemar-puerta-card-in {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Slider ────────────────────────────────────────────────────
+.acemar-puerta-card__slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius $radius 0 0;
+    background: $light-bg;
+    cursor: zoom-in;
+
+    // Aspect ratio 4:3 por defecto, 3:4 en móvil
+    aspect-ratio: 4 / 3;
+
+    @media (max-width: 560px) {
+        aspect-ratio: 3 / 2;
+    }
+}
+
+.acemar-puerta-card__slides {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.acemar-puerta-card__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+
+    &.is-active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.acemar-puerta-card__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+// ── Expand hint on hover ──────────────────────────────────────
+.acemar-puerta-card__slider::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background $transition;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: $radius $radius 0 0;
+}
+
+.acemar-puerta-card__slider:hover::after {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+// ── Flechas ───────────────────────────────────────────────────
+.acemar-puerta-card__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $dark;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    transition: background $transition, opacity $transition, transform $transition;
+    opacity: 0;
+    padding: 0;
+
+    &:hover {
+        background: #fff;
+        color: $accent-dark;
+    }
+
+    &--prev {
+        left: 10px;
+        transform: translateY(-50%);
+
+        &:hover {
+            transform: translateY(-50%) translateX(-1px);
+        }
+    }
+
+    &--next {
+        right: 10px;
+        transform: translateY(-50%);
+
+        &:hover {
+            transform: translateY(-50%) translateX(1px);
+        }
+    }
+
+    svg { display: block; }
+}
+
+.acemar-puerta-card__slider:hover .acemar-puerta-card__arrow,
+.acemar-puerta-card__slider:focus-within .acemar-puerta-card__arrow {
+    opacity: 1;
+}
+
+// ── Bullets ───────────────────────────────────────────────────
+.acemar-puerta-card__bullets {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.acemar-puerta-card__bullet {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background $transition, transform $transition;
+
+    &.is-active {
+        background: #fff;
+        transform: scale(1.35);
+    }
+
+    &:hover:not(.is-active) {
+        background: rgba(255, 255, 255, 0.85);
+    }
+}
+
+// ── Cuerpo de tarjeta ─────────────────────────────────────────
+.acemar-puerta-card__body {
+    padding: 16px 20px 20px;
+}
+
+.acemar-puerta-card__title {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $dark;
+    margin: 0;
+    line-height: 1.4;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 28px;
+        height: 2px;
+        background: $accent;
+        margin-top: 8px;
+    }
+}
+
+// ── Lightbox ──────────────────────────────────────────────────
+.acemar-puertas-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &[hidden] { display: none; }
+
+    &__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 9, 8, 0.88);
+        backdrop-filter: blur(4px);
+        cursor: zoom-out;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        max-width: min(90vw, 1100px);
+        max-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: acemar-lb-in 0.25s ease both;
+    }
+
+    &__img {
+        display: block;
+        max-width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 6px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        user-select: none;
+    }
+
+    &__close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #fff;
+        transition: background $transition;
+        padding: 0;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        svg { display: block; }
+    }
+}
+
+@keyframes acemar-lb-in {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+}

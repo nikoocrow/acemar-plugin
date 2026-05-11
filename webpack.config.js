@@ -45,6 +45,8 @@ module.exports = {
         'selector-muestras/index':        path.resolve(__dirname, 'src/selector-muestras/index.js'),
         'selector-muestras/frontend':     path.resolve(__dirname, 'src/selector-muestras/frontend.js'),
         'caracteristicas-imagen/index':   path.resolve(__dirname, 'src/caracteristicas-imagen/index.js'),
+        'puertas-grid/index':             path.resolve(__dirname, 'src/puertas-grid/index.js'),
+        'puertas-grid/frontend':          path.resolve(__dirname, 'src/puertas-grid/frontend.js'),
     },
     output: {
         ...defaultConfig.output,

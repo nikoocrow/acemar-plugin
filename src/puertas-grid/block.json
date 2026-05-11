@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/puertas-grid",
+  "title": "Puertas – Grid",
+  "category": "acemar",
+  "icon": "grid-view",
+  "description": "Grid responsivo de puertas con slider de imágenes y lightbox.",
+  "keywords": ["puertas", "grid", "galeria", "slider", "lightbox"],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php"
+}
