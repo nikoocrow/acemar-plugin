@@ -76,6 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     });
 
+    // ── Toggle de detalles +/- ────────────────────────────────
+    document.querySelectorAll('.acemar-puerta-card__toggle').forEach((btn) => {
+        const body    = btn.closest('.acemar-puerta-card__body');
+        const details = body.querySelector('.acemar-puerta-card__details');
+        const symbol  = btn.querySelector('span');
+
+        btn.addEventListener('click', () => {
+            const isOpen = details.classList.contains('is-open');
+
+            details.classList.toggle('is-open', !isOpen);
+            details.setAttribute('aria-hidden', String(isOpen));
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            btn.setAttribute('aria-label', isOpen ? 'Ver detalles' : 'Ocultar detalles');
+            symbol.textContent = isOpen ? '+' : '−';
+        });
+    });
+
     // ── Lightbox builder ──────────────────────────────────────
     function buildLightbox() {
         const el = document.createElement('div');

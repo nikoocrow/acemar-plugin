@@ -56,7 +56,18 @@ $puertas = get_posts( [
                     ];
                 }
 
-                $count = count( $images );
+                $count      = count( $images );
+                $ranuras    = get_post_meta( $puerta->ID, '_acemar_puerta_ranuras',      true );
+                $acabado    = get_post_meta( $puerta->ID, '_acemar_puerta_acabado_foto', true );
+                $interior   = get_post_meta( $puerta->ID, '_acemar_puerta_interior',     true );
+                $accesorios = get_post_meta( $puerta->ID, '_acemar_puerta_accesorios',   true );
+
+                $detalles = array_filter( [
+                    __( 'Ranuras',              'acemar-blocks' ) => $ranuras,
+                    __( 'Acabado de la foto',   'acemar-blocks' ) => $acabado,
+                    __( 'Interior',             'acemar-blocks' ) => $interior,
+                    __( 'Accesorios incluidos', 'acemar-blocks' ) => $accesorios,
+                ] );
             ?>
                 <article class="acemar-puerta-card">
 
@@ -111,7 +122,30 @@ $puertas = get_posts( [
                     </div><!-- /.acemar-puerta-card__slider -->
 
                     <div class="acemar-puerta-card__body">
-                        <h3 class="acemar-puerta-card__title"><?php echo esc_html( $title ); ?></h3>
+                        <div class="acemar-puerta-card__body-header">
+                            <h3 class="acemar-puerta-card__title"><?php echo esc_html( $title ); ?></h3>
+                            <?php if ( ! empty( $detalles ) ) : ?>
+                                <button
+                                    class="acemar-puerta-card__toggle"
+                                    type="button"
+                                    aria-expanded="false"
+                                    aria-label="<?php esc_attr_e( 'Ver detalles', 'acemar-blocks' ); ?>"
+                                ><span aria-hidden="true">+</span></button>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if ( ! empty( $detalles ) ) : ?>
+                            <div class="acemar-puerta-card__details" aria-hidden="true">
+                                <ul class="acemar-puerta-card__detail-list">
+                                    <?php foreach ( $detalles as $label => $value ) : ?>
+                                        <li class="acemar-puerta-card__detail-item">
+                                            <span class="acemar-puerta-card__detail-label"><?php echo esc_html( $label ); ?>:</span>
+                                            <span class="acemar-puerta-card__detail-value"><?php echo esc_html( $value ); ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                 </article>
