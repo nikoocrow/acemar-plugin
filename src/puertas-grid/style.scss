@@ -280,6 +280,7 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     align-items: center;
     justify-content: center;
     padding: 0;
+    margin: 4px 0 4px 12px;
     font-size: 1.1rem;
     line-height: 1;
     transition: background $transition, color $transition, border-color $transition, transform $transition;
@@ -352,6 +353,50 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 0.78rem;
     color: $dark;
     line-height: 1.4;
+}
+
+// ── Alineación del bloque ─────────────────────────────────────
+// Afecta: título del bloque, línea decorativa y título de cada tarjeta
+
+.acemar-puertas-grid {
+
+    // ── Izquierda (default) ───────────────────────────────────
+    &.is-align-left {
+        .acemar-puertas-grid__header { text-align: left; }
+
+        .acemar-puertas-grid__titulo::after { margin-left: 0; margin-right: auto; }
+
+        .acemar-puerta-card__title { text-align: left; }
+        .acemar-puerta-card__title::after { margin-left: 0; }
+    }
+
+    // ── Centro ────────────────────────────────────────────────
+    &.is-align-center {
+        .acemar-puertas-grid__header { text-align: center; }
+
+        .acemar-puertas-grid__titulo::after { margin-left: auto; margin-right: auto; }
+
+        .acemar-puerta-card__title { text-align: center; }
+        .acemar-puerta-card__title::after { margin-left: auto; margin-right: auto; }
+
+        .acemar-puerta-card__body-header { justify-content: center; }
+
+        .acemar-puerta-card__detail-item { justify-content: center; }
+    }
+
+    // ── Derecha ───────────────────────────────────────────────
+    &.is-align-right {
+        .acemar-puertas-grid__header { text-align: right; }
+
+        .acemar-puertas-grid__titulo::after { margin-left: auto; margin-right: 0; }
+
+        .acemar-puerta-card__title { text-align: right; }
+        .acemar-puerta-card__title::after { margin-left: auto; margin-right: 0; }
+
+        .acemar-puerta-card__body-header { flex-direction: row-reverse; }
+
+        .acemar-puerta-card__detail-item { justify-content: flex-end; }
+    }
 }
 
 // ── Lightbox ──────────────────────────────────────────────────

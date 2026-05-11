@@ -63,6 +63,14 @@
     "align": {
       "type": "string",
       "default": "left"
+    },
+    "marginTop": {
+      "type": "number",
+      "default": 0
+    },
+    "marginBottom": {
+      "type": "number",
+      "default": 0
     }
   },
   "editorScript": "file:./index.js",

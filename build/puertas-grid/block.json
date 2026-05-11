@@ -25,6 +25,10 @@
     "titulo": {
       "type": "string",
       "default": ""
+    },
+    "alineacion": {
+      "type": "string",
+      "default": "left"
     }
   },
   "editorScript": "file:./index.js",

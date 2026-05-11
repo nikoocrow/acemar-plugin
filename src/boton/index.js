@@ -28,12 +28,18 @@ const Edit = ( { attributes, setAttributes } ) => {
         label, url, target, borderRadius,
         borderColor, hoverBg, hoverTextColor,
         textColor, bgColor, fontSize,
-        paddingX, paddingY, align
+        paddingX, paddingY, align,
+        marginTop, marginBottom,
     } = attributes;
+
+    const wrapperMargin = {
+        ...(marginTop    > 0 && { marginTop:    `${marginTop}px`    }),
+        ...(marginBottom > 0 && { marginBottom: `${marginBottom}px` }),
+    };
 
     const blockProps = useBlockProps( {
         className: 'acemar-boton-wrapper',
-        style: { textAlign: align }
+        style: { textAlign: align, ...wrapperMargin },
     } );
 
     const btnStyle = {
@@ -111,6 +117,22 @@ const Edit = ( { attributes, setAttributes } ) => {
                         max={ 40 }
                         step={ 2 }
                     />
+                    <RangeControl
+                        label="Margen superior (px)"
+                        value={ marginTop }
+                        onChange={ ( val ) => setAttributes( { marginTop: val ?? 0 } ) }
+                        min={ 0 }
+                        max={ 120 }
+                        step={ 4 }
+                    />
+                    <RangeControl
+                        label="Margen inferior (px)"
+                        value={ marginBottom }
+                        onChange={ ( val ) => setAttributes( { marginBottom: val ?? 0 } ) }
+                        min={ 0 }
+                        max={ 120 }
+                        step={ 4 }
+                    />
                 </PanelBody>
 
                 <PanelBody title="Colores" initialOpen={ false }>
@@ -171,12 +193,18 @@ const Save = ( { attributes } ) => {
         label, url, target, borderRadius,
         borderColor, hoverBg, hoverTextColor,
         textColor, bgColor, fontSize,
-        paddingX, paddingY, align
+        paddingX, paddingY, align,
+        marginTop, marginBottom,
     } = attributes;
+
+    const wrapperMargin = {
+        ...(marginTop    > 0 && { marginTop:    `${marginTop}px`    }),
+        ...(marginBottom > 0 && { marginBottom: `${marginBottom}px` }),
+    };
 
     const blockProps = useBlockProps.save( {
         className: 'acemar-boton-wrapper',
-        style: { textAlign: align },
+        style: { textAlign: align, ...wrapperMargin },
     } );
 
     return (

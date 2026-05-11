@@ -8,8 +8,10 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-$titulo      = ! empty( $attributes['titulo'] ) ? $attributes['titulo'] : '';
-$align_class = ! empty( $attributes['align'] )  ? 'align' . $attributes['align'] : '';
+$titulo      = ! empty( $attributes['titulo'] )     ? $attributes['titulo']     : '';
+$align_class = ! empty( $attributes['align'] )      ? 'align' . $attributes['align'] : '';
+$alineacion  = ! empty( $attributes['alineacion'] ) ? $attributes['alineacion'] : 'left';
+$text_class  = 'is-align-' . sanitize_html_class( $alineacion );
 
 $puertas = get_posts( [
     'post_type'      => 'acemar_puerta',
@@ -20,7 +22,7 @@ $puertas = get_posts( [
 ] );
 ?>
 
-<section class="acemar-puertas-grid wp-block-acemar-puertas-grid <?php echo esc_attr( $align_class ); ?>">
+<section class="acemar-puertas-grid wp-block-acemar-puertas-grid <?php echo esc_attr( $align_class . ' ' . $text_class ); ?>">
 
     <?php if ( $titulo ) : ?>
         <div class="acemar-puertas-grid__header">
