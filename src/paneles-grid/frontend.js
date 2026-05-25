@@ -1,31 +1,33 @@
 /**
- * Acemar – Paneles Acústicos Domus Grid | frontend.js
- * Lightbox singleton: abre imagen al click en la tarjeta.
+ * Acemar – Paneles Acústicos Domus | frontend.js
+ *
+ * Grid: tarjetas son <a> → navegación nativa, sin JS necesario.
+ * Single panel: lightbox al hacer click en la imagen hero.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── Lightbox (singleton) ──────────────────────────────────
+    // ── Lightbox en single panel ──────────────────────────────
+    const hero = document.querySelector('.acemar-panel-single__hero');
+    if (!hero) return;
+
+    const heroImg = hero.querySelector('.acemar-panel-single__hero-img');
+    if (!heroImg) return;
+
     const lb = buildLightbox();
 
-    // ── Activar tarjetas con imagen ───────────────────────────
-    document.querySelectorAll('.acemar-panel-card.has-image').forEach((card) => {
-        const src = card.dataset.full;
-        const alt = card.dataset.alt || '';
+    hero.addEventListener('click', () => {
+        const src = heroImg.dataset.full || heroImg.src;
+        const alt = heroImg.alt || '';
+        lb.open(src, alt);
+    });
 
-        function openCard() {
-            if (src) lb.open(src, alt);
+    hero.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const src = heroImg.dataset.full || heroImg.src;
+            lb.open(src, heroImg.alt || '');
         }
-
-        card.addEventListener('click', openCard);
-
-        // Accesibilidad: Enter / Space abren el lightbox
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openCard();
-            }
-        });
     });
 
     // ── Lightbox builder ──────────────────────────────────────
@@ -71,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         backdrop.addEventListener('click', close);
         closeBtn.addEventListener('click', close);
-
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !el.hidden) close();
         });

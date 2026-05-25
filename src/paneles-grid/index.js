@@ -42,7 +42,7 @@ const Edit = ({ attributes, setAttributes }) => {
                         value={columnas}
                         onChange={(val) => setAttributes({ columnas: val })}
                         min={2}
-                        max={4}
+                        max={6}
                         step={1}
                         help={__('En tablet se reduce a 2 columnas, en móvil a 1.', 'acemar-blocks')}
                     />
@@ -53,7 +53,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 <div className="acemar-paneles-grid-editor__preview">
                     <span className="acemar-paneles-grid-editor__icon">🔲</span>
                     <strong>Acemar – Paneles Acústicos Domus</strong>
-                    <p>Grid de {columnas} columnas con imagen y título. Click abre lightbox.</p>
+                    <p>Grid de {columnas} columnas. Click en cada panel abre su página.</p>
                     <p>El contenido se renderiza en el frontend.</p>
                     {titulo && (
                         <p className="acemar-paneles-grid-editor__meta">

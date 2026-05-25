@@ -19,7 +19,7 @@
     },
     "columnas": {
       "type": "number",
-      "default": 3
+      "default": 4
     },
     "alineacion": {
       "type": "string",
