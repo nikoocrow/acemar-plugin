@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "acemar/paneles-grid",
+  "title": "Paneles Domus – Grid",
+  "category": "acemar",
+  "icon": "grid-view",
+  "description": "Grid responsivo de Paneles Acústicos Domus con lightbox.",
+  "keywords": [
+    "paneles",
+    "domus",
+    "acustico",
+    "grid",
+    "galeria",
+    "lightbox"
+  ],
+  "textdomain": "acemar-blocks",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "default": ""
+    },
+    "columnas": {
+      "type": "number",
+      "default": 3
+    },
+    "alineacion": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./frontend.js",
+  "render": "file:./render.php"
+}
