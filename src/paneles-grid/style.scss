@@ -1,5 +1,6 @@
 // ============================================================
-// Acemar – Paneles Acústicos Domus Grid + Single | style.scss
+// Acemar – Paneles Acústicos Domus  |  style.scss
+// Grid + Single page + Lightbox
 // ============================================================
 
 $accent:      #C8A96E;
@@ -11,21 +12,18 @@ $border:      #D9D4CC;
 $radius:      8px;
 $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+
 // ══════════════════════════════════════════════════════════════
 // GRID (bloque)
 // ══════════════════════════════════════════════════════════════
 
-// ── Bloque wrapper ────────────────────────────────────────────
 .acemar-paneles-grid {
     padding: 56px 20px;
     font-family: 'Tenor Sans', sans-serif;
 
-    @media (min-width: 768px) {
-        padding: 56px 40px;
-    }
+    @media (min-width: 768px) { padding: 56px 40px; }
 }
 
-// ── Header ────────────────────────────────────────────────────
 .acemar-paneles-grid__header {
     text-align: center;
     margin-bottom: 40px;
@@ -55,50 +53,29 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // ── Grid ──────────────────────────────────────────────────────
-// --paneles-cols inyectada desde render.php (2–6)
 .acemar-paneles-grid__grid {
     display: grid;
     grid-template-columns: repeat(var(--paneles-cols, 4), 1fr);
     gap: 14px;
 
-    // Tablet: 3 columnas
     @media (max-width: 900px) {
         grid-template-columns: repeat(3, 1fr);
         gap: 12px;
     }
-
-    // Móvil: 2 columnas
     @media (max-width: 560px) {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
 }
 
-// ── Tarjeta (ahora es <a>) ────────────────────────────────────
+// ── Tarjeta ───────────────────────────────────────────────────
 .acemar-panel-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
     background: #fff;
     border-radius: $radius;
     overflow: hidden;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
     transition: box-shadow $transition, transform $transition;
     animation: acemar-panel-card-in 0.4s ease both;
-    cursor: pointer;
-
-    &:hover {
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
-        transform: translateY(-2px);
-        text-decoration: none;
-        color: inherit;
-    }
-
-    &:focus-visible {
-        outline: 2px solid $accent;
-        outline-offset: 3px;
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
-    }
 }
 
 @keyframes acemar-panel-card-in {
@@ -106,12 +83,16 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     to   { opacity: 1; transform: translateY(0); }
 }
 
-// ── Imagen ────────────────────────────────────────────────────
+// ── Imagen (cursor: zoom-in, hover independiente) ─────────────
 .acemar-panel-card__img-wrap {
     position: relative;
     overflow: hidden;
     background: $light-bg;
     aspect-ratio: 1 / 1;
+    cursor: zoom-in;
+
+    &:hover { outline: none; }
+    &:focus-visible { outline: 2px solid $accent; outline-offset: -2px; }
 }
 
 .acemar-panel-card__img {
@@ -124,51 +105,54 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transition: transform 0.4s $transition;
 }
 
-.acemar-panel-card:hover .acemar-panel-card__img {
+.acemar-panel-card__img-wrap:hover .acemar-panel-card__img {
     transform: scale(1.06);
 }
 
-// ── Overlay con flecha ────────────────────────────────────────
+// Overlay
 .acemar-panel-card__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0);
+    background: rgba(0,0,0,0);
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 10px;
+    align-items: center;
+    justify-content: center;
     transition: background $transition;
     pointer-events: none;
 }
 
-.acemar-panel-card__arrow-icon {
+.acemar-panel-card__zoom-icon {
     color: #fff;
     opacity: 0;
-    transform: translateX(-4px);
+    transform: scale(0.7);
     transition: opacity $transition, transform $transition;
-    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
-    flex-shrink: 0;
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5));
 }
 
-.acemar-panel-card:hover .acemar-panel-card__overlay {
-    background: rgba(0, 0, 0, 0.30);
-}
+.acemar-panel-card__img-wrap:hover .acemar-panel-card__overlay { background: rgba(0,0,0,0.30); }
+.acemar-panel-card__img-wrap:hover .acemar-panel-card__zoom-icon { opacity: 1; transform: scale(1); }
 
-.acemar-panel-card:hover .acemar-panel-card__arrow-icon {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-// ── Placeholder sin imagen ────────────────────────────────────
 .acemar-panel-card__placeholder {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, $light-bg 25%, #ece7e0 100%);
 }
 
-// ── Cuerpo / título ───────────────────────────────────────────
+// ── Body / título ─────────────────────────────────────────────
 .acemar-panel-card__body {
     padding: 9px 10px 11px;
+}
+
+.acemar-panel-card__title-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
 }
 
 .acemar-panel-card__title {
@@ -183,6 +167,7 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color $transition;
 
     &::after {
         content: '';
@@ -195,27 +180,30 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
-.acemar-panel-card:hover .acemar-panel-card__title::after {
-    width: 30px;
+.acemar-panel-card__title-link:hover .acemar-panel-card__title {
+    color: $accent-dark;
+    &::after { width: 30px; }
+}
+
+// ── Hover card leve (solo sombra, sin transform ya que la imagen ya tiene efecto) ──
+.acemar-panel-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.11);
 }
 
 // ── Alineación ────────────────────────────────────────────────
 .acemar-paneles-grid {
-
     &.is-align-left {
         .acemar-paneles-grid__header { text-align: left; }
         .acemar-paneles-grid__titulo::after { margin-left: 0; margin-right: auto; }
         .acemar-panel-card__title { text-align: left; }
         .acemar-panel-card__title::after { margin-left: 0; }
     }
-
     &.is-align-center {
         .acemar-paneles-grid__header { text-align: center; }
         .acemar-paneles-grid__titulo::after { margin-left: auto; margin-right: auto; }
         .acemar-panel-card__title { text-align: center; }
         .acemar-panel-card__title::after { margin-left: auto; margin-right: auto; }
     }
-
     &.is-align-right {
         .acemar-paneles-grid__header { text-align: right; }
         .acemar-paneles-grid__titulo::after { margin-left: auto; margin-right: 0; }
@@ -226,99 +214,55 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 
 // ══════════════════════════════════════════════════════════════
-// SINGLE PANEL PAGE
+// SINGLE PAGE
 // ══════════════════════════════════════════════════════════════
 
 .acemar-panel-single {
     font-family: 'Tenor Sans', sans-serif;
+    color: $dark;
     min-height: 60vh;
 }
 
-// ── Hero imagen destacada ─────────────────────────────────────
+// ── Hero ──────────────────────────────────────────────────────
 .acemar-panel-single__hero {
     width: 100%;
-    max-height: 75vh;
     overflow: hidden;
-    background: $light-bg;
-    position: relative;
-    cursor: zoom-in;
+    background: $dark;
+    max-height: 72vh;
 
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0);
-        transition: background $transition;
-        pointer-events: none;
-    }
-
-    &:hover::after {
-        background: rgba(0, 0, 0, 0.10);
-    }
+    @media (max-width: 768px) { max-height: 50vw; }
 }
 
 .acemar-panel-single__hero-img {
     display: block;
     width: 100%;
-    height: 100%;
+    max-height: 72vh;
     object-fit: cover;
-    max-height: 75vh;
-    transition: transform 0.5s ease;
+    object-position: center;
+
+    @media (max-width: 768px) { max-height: 50vw; }
 }
 
-.acemar-panel-single__hero:hover .acemar-panel-single__hero-img {
-    transform: scale(1.02);
-}
-
-.acemar-panel-single__hero-hint {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity $transition, transform $transition;
-    pointer-events: none;
-    color: $dark;
-    backdrop-filter: blur(4px);
-
-    svg { display: block; }
-}
-
-.acemar-panel-single__hero:hover .acemar-panel-single__hero-hint {
-    opacity: 1;
-    transform: scale(1);
-}
-
-// ── Contenedor principal ──────────────────────────────────────
+// ── Container ─────────────────────────────────────────────────
 .acemar-panel-single__container {
-    max-width: 900px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 40px 24px 80px;
 
-    @media (min-width: 768px) {
-        padding: 48px 40px 100px;
-    }
+    @media (min-width: 768px) { padding: 52px 48px 100px; }
+    @media (min-width: 1200px) { padding: 52px 40px 100px; }
 }
 
-// ── Navegación / Volver ───────────────────────────────────────
-.acemar-panel-single__nav {
-    margin-bottom: 32px;
-}
+// ── Volver ────────────────────────────────────────────────────
+.acemar-panel-single__nav { margin-bottom: 36px; }
 
 .acemar-panel-single__back {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-family: 'Tenor Sans', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: $mid;
     text-decoration: none;
@@ -329,46 +273,279 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     &:hover {
         color: $dark;
         gap: 10px;
-
         svg { transform: translateX(-3px); }
     }
 }
 
-// ── Título del panel ──────────────────────────────────────────
-.acemar-panel-single__header {
-    margin-bottom: 40px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid $border;
+// ══════════════════════════════════════════════════════════════
+// SECCIÓN CARACTERÍSTICAS + IMAGEN DESTACADA
+// ══════════════════════════════════════════════════════════════
+.acemar-panel-caract {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 72px;
+
+    // Tablet
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr 340px;
+        gap: 40px;
+    }
+
+    // Móvil → card: imagen arriba, texto abajo
+    @media (max-width: 680px) {
+        grid-template-columns: 1fr;
+        gap: 0;
+        background: #fff;
+        border-radius: $radius;
+        overflow: hidden;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
 }
 
-.acemar-panel-single__title {
+// Columna texto (izquierda)
+.acemar-panel-caract__content {
+    @media (max-width: 680px) {
+        order: 2;
+        padding: 24px 20px 28px;
+    }
+}
+
+// Título del panel
+.acemar-panel-caract__title {
     font-family: 'Italiana', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 400;
     color: $dark;
-    margin: 0 0 16px;
+    margin: 0 0 20px;
     letter-spacing: 0.02em;
     line-height: 1.1;
 
     &::after {
         content: '';
         display: block;
-        width: 48px;
+        width: 44px;
         height: 3px;
         background: $accent;
-        margin-top: 16px;
+        margin-top: 14px;
     }
 }
 
-// ── Área de contenido (bloques) ───────────────────────────────
+// Lista de características
+.acemar-panel-caract__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.acemar-panel-caract__item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba($border, 0.6);
+    font-size: 0.9rem;
+    color: $mid;
+    line-height: 1.5;
+
+    &:first-child { border-top: 1px solid rgba($border, 0.6); }
+
+    &::before {
+        content: '✓';
+        color: $accent;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+        font-weight: 700;
+        margin-top: 2px;
+    }
+}
+
+// Columna imagen (derecha, con lightbox)
+.acemar-panel-caract__img-col {
+    @media (max-width: 680px) {
+        order: 1;
+    }
+}
+
+.acemar-panel-single__featured-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius;
+    background: $light-bg;
+    cursor: zoom-in;
+    aspect-ratio: 4 / 5;
+
+    @media (max-width: 680px) {
+        border-radius: 0;
+        aspect-ratio: 4 / 3;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0);
+        transition: background $transition;
+        pointer-events: none;
+    }
+    &:hover::after { background: rgba(0,0,0,0.10); }
+    &:focus-visible { outline: 2px solid $accent; outline-offset: 3px; }
+}
+
+.acemar-panel-single__featured-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.acemar-panel-single__featured-wrap:hover .acemar-panel-single__featured-img {
+    transform: scale(1.03);
+}
+
+// Hint zoom
+.acemar-panel-single__feat-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $dark;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity $transition, transform $transition;
+    pointer-events: none;
+
+    svg { display: block; }
+}
+
+.acemar-panel-single__featured-wrap:hover .acemar-panel-single__feat-hint {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+// ══════════════════════════════════════════════════════════════
+// SECCIÓN GALERÍA DE APLICACIONES
+// ══════════════════════════════════════════════════════════════
+.acemar-panel-galeria {
+    padding-top: 60px;
+    border-top: 1px solid $border;
+    margin-bottom: 72px;
+}
+
+.acemar-panel-galeria__header {
+    max-width: 680px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.acemar-panel-galeria__titulo {
+    font-family: 'Italiana', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    color: $dark;
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 36px;
+        height: 2px;
+        background: $accent;
+        margin: 12px auto 0;
+    }
+}
+
+.acemar-panel-galeria__texto {
+    font-size: 0.92rem;
+    color: $mid;
+    line-height: 1.7;
+    margin: 0;
+}
+
+// Grid de imágenes
+.acemar-panel-galeria__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+// Item de galería
+.acemar-panel-galeria__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius;
+    background: $light-bg;
+    aspect-ratio: 4 / 3;
+    cursor: zoom-in;
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+}
+
+.acemar-panel-galeria__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: transform 0.4s $transition;
+}
+
+.acemar-panel-galeria__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background $transition;
+    pointer-events: none;
+}
+
+.acemar-panel-galeria__zoom {
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity $transition, transform $transition;
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+}
+
+.acemar-panel-galeria__item:hover {
+    .acemar-panel-galeria__img     { transform: scale(1.05); }
+    .acemar-panel-galeria__overlay { background: rgba(0,0,0,0.28); }
+    .acemar-panel-galeria__zoom    { opacity: 1; transform: scale(1); }
+}
+
+
+// ══════════════════════════════════════════════════════════════
+// CONTENIDO DE BLOQUES (editor)
+// ══════════════════════════════════════════════════════════════
 .acemar-panel-single__content {
-    // Tipografía base
-    font-family: 'Tenor Sans', sans-serif;
     font-size: 1rem;
     line-height: 1.75;
     color: $mid;
+    padding-top: 60px;
+    border-top: 1px solid $border;
 
-    // Headings dentro del contenido
     h2, h3, h4 {
         font-family: 'Italiana', serif;
         color: $dark;
@@ -377,119 +554,45 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin-top: 2em;
         margin-bottom: 0.6em;
     }
-
     h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
     h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
-    h4 { font-size: 1.1rem; font-family: 'Tenor Sans', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; }
+    h4 { font-family: 'Tenor Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-    // Párrafos
-    p { margin: 0 0 1.4em; }
+    p   { margin: 0 0 1.4em; }
+    ul, ol { padding-left: 1.6em; margin: 0 0 1.4em; li { margin-bottom: 0.4em; } }
 
-    // Listas
-    ul, ol {
-        padding-left: 1.6em;
-        margin: 0 0 1.4em;
-
-        li { margin-bottom: 0.4em; }
-    }
-
-    // Imágenes
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: $radius;
-        display: block;
-    }
-
-    // Figura / caption
+    img { max-width: 100%; height: auto; border-radius: $radius; display: block; }
     figure { margin: 2em 0; }
+    figcaption { font-size: 0.75rem; color: $mid; text-align: center; margin-top: 8px; letter-spacing: 0.06em; }
 
-    figcaption {
-        font-size: 0.75rem;
-        color: $mid;
-        letter-spacing: 0.06em;
-        text-align: center;
-        margin-top: 8px;
-    }
+    .wp-block-image  { margin: 2em 0; img { border-radius: $radius; } }
+    .wp-block-gallery { margin: 2em 0; }
 
-    // Bloque imagen WP
-    .wp-block-image {
-        margin: 2em 0;
-
-        img { border-radius: $radius; }
-    }
-
-    // Bloque galería WP
-    .wp-block-gallery {
-        margin: 2em 0;
-
-        img { border-radius: calc($radius / 2); }
-    }
-
-    // Separador
     hr, .wp-block-separator {
         border: none;
         border-top: 1px solid $border;
         margin: 2.5em 0;
-
-        &.is-style-wide  { border-top-width: 2px; }
-        &.is-style-dots  { border: none; text-align: center; &::before { content: '· · ·'; color: $accent; letter-spacing: 0.4em; font-size: 1rem; } }
+        &.is-style-dots { border: none; text-align: center;
+            &::before { content: '· · ·'; color: $accent; letter-spacing: 0.4em; font-size: 1rem; }
+        }
     }
 
-    // Cita
     blockquote, .wp-block-quote {
         margin: 2em 0;
         padding: 20px 28px;
         border-left: 3px solid $accent;
         background: $light-bg;
         border-radius: 0 $radius $radius 0;
-
-        p { margin: 0; font-style: italic; color: $dark; font-size: 1.05rem; }
-
-        cite {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: $accent-dark;
-            font-style: normal;
-        }
+        p { margin: 0; font-style: italic; color: $dark; }
+        cite { display: block; margin-top: 10px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: $accent-dark; font-style: normal; }
     }
 
-    // Tabla
     .wp-block-table {
         margin: 2em 0;
         overflow-x: auto;
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-        }
-
-        th, td {
-            padding: 10px 14px;
-            border: 1px solid $border;
-            text-align: left;
-        }
-
-        th {
-            background: $light-bg;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            font-size: 0.72rem;
-            color: $dark;
-        }
-    }
-
-    // Botones
-    .wp-block-buttons {
-        margin: 2em 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+        table  { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        th, td { padding: 10px 14px; border: 1px solid $border; text-align: left; }
+        th     { background: $light-bg; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: $dark; }
     }
 
     .wp-block-button__link {
@@ -502,25 +605,17 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
         letter-spacing: 0.15em;
         text-transform: uppercase;
         text-decoration: none;
-        transition: background $transition, color $transition, transform $transition;
-
         background: $dark;
         color: #fff;
-
-        &:hover {
-            background: $accent;
-            transform: translateY(-1px);
-        }
-    }
-
-    // Bloques Acemar personalizados dentro del contenido
-    .acemar-puertas-grid,
-    .acemar-paneles-grid {
-        padding: 40px 0;
+        transition: background $transition;
+        &:hover { background: $accent; }
     }
 }
 
-// ── Lightbox del hero ─────────────────────────────────────────
+
+// ══════════════════════════════════════════════════════════════
+// LIGHTBOX (grid + single)
+// ══════════════════════════════════════════════════════════════
 .acemar-paneles-lightbox {
     position: fixed;
     inset: 0;
@@ -535,7 +630,7 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: absolute;
         inset: 0;
         background: rgba(10, 9, 8, 0.92);
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(6px);
         cursor: zoom-out;
     }
 
@@ -556,17 +651,17 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
         max-height: 94vh;
         object-fit: contain;
         border-radius: 4px;
-        box-shadow: 0 32px 100px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 32px 100px rgba(0,0,0,0.6);
         user-select: none;
     }
 
     &__close {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 18px;
+        right: 18px;
         z-index: 2;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.22);
         border-radius: 50%;
         width: 44px;
         height: 44px;
@@ -577,10 +672,60 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
         color: #fff;
         transition: background $transition;
         padding: 0;
-
-        &:hover { background: rgba(255, 255, 255, 0.24); }
+        &:hover { background: rgba(255,255,255,0.24); }
         &:focus-visible { outline: 2px solid $accent; outline-offset: 3px; }
         svg { display: block; }
+    }
+
+    // Prev / Next
+    &__nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.22);
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #fff;
+        transition: background $transition, transform $transition;
+        padding: 0;
+        &:hover { background: rgba(255,255,255,0.24); }
+        &:focus-visible { outline: 2px solid $accent; outline-offset: 3px; }
+        svg { display: block; }
+    }
+
+    &__prev {
+        left: 18px;
+        &:hover { transform: translateY(-50%) translateX(-2px); }
+    }
+    &__next {
+        right: 18px;
+        &:hover { transform: translateY(-50%) translateX(2px); }
+    }
+
+    &__counter {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.65);
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        user-select: none;
+    }
+
+    // Móvil: ocultar nav cuando no hay espacio
+    @media (max-width: 480px) {
+        &__prev { left: 8px; }
+        &__next { right: 8px; }
+        &__nav  { width: 38px; height: 38px; }
     }
 }
 
