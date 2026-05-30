@@ -2,6 +2,8 @@ import { registerBlockType } from '@wordpress/blocks';
 import {
     useBlockProps,
     InspectorControls,
+    BlockControls,
+    AlignmentControl,
     MediaUpload,
     MediaUploadCheck,
     RichText,
@@ -14,6 +16,7 @@ import {
     TextControl,
     SelectControl,
     RadioControl,
+    ToolbarGroup,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import './editor.scss';
@@ -32,12 +35,18 @@ const POSICION_OPTIONS = [
     { label: 'Imagen a la izquierda', value: 'izquierda' },
 ];
 
+const NIVEL_TITULO_OPTIONS = [
+    { label: 'H2', value: 'h2' },
+    { label: 'H3', value: 'h3' },
+];
+
 const Edit = ({ attributes, setAttributes }) => {
     const {
         imagenPosicion, fondoColor,
         imagenUrl, imagenId, imagenAlt,
         botonActivo, botonTexto, botonUrl,
-        contenido,
+        contenido, titulo, nivelTitulo,
+        tituloAlineacion, contenidoAlineacion,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -52,6 +61,23 @@ const Edit = ({ attributes, setAttributes }) => {
 
     return (
         <>
+            <BlockControls>
+                <ToolbarGroup>
+                    <AlignmentControl
+                        label="Alinear título"
+                        value={ tituloAlineacion }
+                        onChange={ (val) => setAttributes({ tituloAlineacion: val ?? 'left' }) }
+                    />
+                </ToolbarGroup>
+                <ToolbarGroup>
+                    <AlignmentControl
+                        label="Alinear párrafo"
+                        value={ contenidoAlineacion }
+                        onChange={ (val) => setAttributes({ contenidoAlineacion: val ?? 'left' }) }
+                    />
+                </ToolbarGroup>
+            </BlockControls>
+
             <InspectorControls>
                 {/* ── Layout ── */}
                 <PanelBody title="Layout" initialOpen={ true }>
@@ -66,6 +92,12 @@ const Edit = ({ attributes, setAttributes }) => {
                         value={ fondoColor }
                         options={ FONDO_OPTIONS }
                         onChange={ (val) => setAttributes({ fondoColor: val }) }
+                    />
+                    <SelectControl
+                        label="Nivel del título"
+                        value={ nivelTitulo }
+                        options={ NIVEL_TITULO_OPTIONS }
+                        onChange={ (val) => setAttributes({ nivelTitulo: val }) }
                     />
                 </PanelBody>
 
@@ -161,14 +193,23 @@ const Edit = ({ attributes, setAttributes }) => {
                 {/* Columna texto */}
                 <div className="acemar-seccion-sostenibilidad__texto">
                     <RichText
+                        tagName={ nivelTitulo }
+                        className="acemar-seccion-sostenibilidad__titulo"
+                        placeholder="Título..."
+                        value={ titulo }
+                        onChange={ (val) => setAttributes({ titulo: val }) }
+                        allowedFormats={ [] }
+                        style={{ textAlign: tituloAlineacion }}
+                    />
+                    <RichText
                         tagName="div"
                         className="acemar-seccion-sostenibilidad__contenido"
                         multiline="p"
-                        placeholder="Escribe el contenido aquí... Usa / para agregar un Heading opcional."
+                        placeholder="Escribe el contenido aquí..."
                         value={ contenido }
                         onChange={ (val) => setAttributes({ contenido: val }) }
                         allowedFormats={ ['core/bold', 'core/italic', 'core/link'] }
-                        style={{ color: isDark ? '#ffffff' : '#1a1a1a' }}
+                        style={{ color: isDark ? '#ffffff' : '#1a1a1a', textAlign: contenidoAlineacion }}
                     />
                 </div>
 
@@ -211,7 +252,8 @@ const Save = ({ attributes }) => {
         imagenPosicion, fondoColor,
         imagenUrl, imagenAlt,
         botonActivo, botonTexto, botonUrl,
-        contenido,
+        contenido, titulo, nivelTitulo,
+        tituloAlineacion, contenidoAlineacion,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -225,10 +267,19 @@ const Save = ({ attributes }) => {
     return (
         <div { ...blockProps }>
             <div className="acemar-seccion-sostenibilidad__texto">
+                { titulo && (
+                    <RichText.Content
+                        tagName={ nivelTitulo }
+                        className="acemar-seccion-sostenibilidad__titulo"
+                        value={ titulo }
+                        style={{ textAlign: tituloAlineacion }}
+                    />
+                ) }
                 <RichText.Content
                     tagName="div"
                     className="acemar-seccion-sostenibilidad__contenido"
                     value={ contenido }
+                    style={{ textAlign: contenidoAlineacion }}
                 />
             </div>
 

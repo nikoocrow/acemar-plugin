@@ -27,6 +27,9 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 48px;
 }
 
+.is-align-left  .acemar-puertas-grid__header { text-align: left; }
+.is-align-right .acemar-puertas-grid__header { text-align: right; }
+
 .acemar-puertas-grid__titulo {
     font-family: 'Italiana', serif;
     font-size: clamp(2rem, 4vw, 3rem);
@@ -43,6 +46,9 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin: 14px auto 0;
     }
 }
+
+.is-align-left  .acemar-puertas-grid__titulo::after { margin-left: 0;    margin-right: auto; }
+.is-align-right .acemar-puertas-grid__titulo::after { margin-left: auto;  margin-right: 0; }
 
 .acemar-puertas-grid__empty {
     text-align: center;

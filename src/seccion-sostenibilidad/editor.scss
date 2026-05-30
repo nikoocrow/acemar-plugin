@@ -23,6 +23,13 @@
         font-size: 0.85rem;
     }
 
+    // Imagen con proporción fija en editor
+    &__imagen {
+        aspect-ratio: 16 / 10;
+        width: 100%;
+        object-fit: cover;
+    }
+
     // RichText en editor
     &__contenido {
         .block-editor-rich-text__editable {

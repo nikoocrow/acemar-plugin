@@ -29,6 +29,9 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-bottom: 40px;
 }
 
+.is-align-left  .acemar-paneles-grid__header { text-align: left; }
+.is-align-right .acemar-paneles-grid__header { text-align: right; }
+
 .acemar-paneles-grid__titulo {
     font-family: 'Italiana', serif;
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -46,6 +49,9 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
+.is-align-left  .acemar-paneles-grid__titulo::after { margin-left: 0;    margin-right: auto; }
+.is-align-right .acemar-paneles-grid__titulo::after { margin-left: auto;  margin-right: 0; }
+
 .acemar-paneles-grid__empty {
     text-align: center;
     color: $mid;
@@ -55,16 +61,13 @@ $transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
 // ── Grid ──────────────────────────────────────────────────────
 .acemar-paneles-grid__grid {
     display: grid;
-    grid-template-columns: repeat(var(--paneles-cols, 4), 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, 190px);
+    justify-content: center;
+    gap: 1.25rem;
 
-    @media (max-width: 900px) {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-    }
-    @media (max-width: 560px) {
+    @media (max-width: 480px) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        gap: 0.75rem;
     }
 }
 

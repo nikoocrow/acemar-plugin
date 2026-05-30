@@ -18,6 +18,10 @@
         font-weight: 400;
         color: #1a1a1a;
         margin: 0 0 0.5rem;
+
+        &::after {
+            display: none;
+        }
     }
 
     &__accent-line {
@@ -144,8 +148,9 @@
     // ── Grilla de muestras ───────────────────
     &__grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, 200px);
+        justify-content: center;
+        gap: 1.5rem;
 
         @media (max-width: 480px) {
             grid-template-columns: repeat(2, 1fr);
@@ -155,7 +160,6 @@
     // ── Card de muestra ──────────────────────
     &__item {
         cursor: pointer;
-        text-align: center;
 
         &:hover .acemar-selector-muestras__item-img {
             transform: scale(1.04);
@@ -167,7 +171,7 @@
         overflow: hidden;
         border-radius: 6px;
         margin-bottom: 0.5rem;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 3 / 4;
         background: #eee;
     }
 
@@ -186,6 +190,9 @@
         text-transform: uppercase;
         color: #444;
         line-height: 1.3;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     // ── Estado vacío y cargando ──────────────

@@ -20,7 +20,7 @@
         grid-template-areas: "texto imagen";
 
         .acemar-seccion-sostenibilidad__texto       { grid-area: texto; padding: 60px 60px 60px 80px; }
-        .acemar-seccion-sostenibilidad__imagen-wrap { grid-area: imagen; padding: 40px 60px 40px 0; }
+        .acemar-seccion-sostenibilidad__imagen-wrap { grid-area: imagen; }
     }
 
     &--imagen-izquierda {
@@ -28,7 +28,7 @@
         grid-template-areas: "imagen texto";
 
         .acemar-seccion-sostenibilidad__texto       { grid-area: texto; padding: 60px 80px 60px 60px; }
-        .acemar-seccion-sostenibilidad__imagen-wrap { grid-area: imagen; padding: 40px 0 40px 60px; }
+        .acemar-seccion-sostenibilidad__imagen-wrap { grid-area: imagen; }
     }
 
     // ── Columna texto ─────────────────────────────────────
@@ -38,51 +38,53 @@
         justify-content: center;
     }
 
+    &__titulo {
+        font-family: 'Italiana', serif;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        line-height: 1.1;
+        margin: 0 0 24px;
+        padding-bottom: 0;
+        text-align: left;
+
+        &:is(h2) { font-size: clamp(2.2rem, 4vw, 3.8rem); }
+        &:is(h3) { font-size: clamp(1.8rem, 3vw, 3rem); }
+
+        &::after { display: none; }
+    }
+
     &__contenido {
         display: flex;
         flex-direction: column;
         gap: 20px;
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Italiana', serif;
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            line-height: 1.15;
-            margin: 0 0 4px;
-        }
-
-        h2 { font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
-        h3 { font-size: clamp(1.3rem, 2vw, 1.9rem); }
-        h4 { font-size: clamp(1.1rem, 1.6vw, 1.5rem); }
-
         p {
             font-family: 'Tenor Sans', sans-serif;
-            font-size: clamp(0.9rem, 1.1vw, 1rem);
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
             line-height: 1.8;
             margin: 0;
         }
     }
 
     // Texto en fondo negro
-    &--fondo-negro &__contenido {
-        h1, h2, h3, h4, h5, h6 { color: #ffffff; }
-        p { color: rgba(255,255,255,0.75); }
-    }
+    &--fondo-negro &__titulo { color: #ffffff; }
+    &--fondo-negro &__contenido p { color: rgba(255,255,255,0.75); }
 
     // Texto en fondos claros
-    &--fondo-blanco &__contenido,
-    &--fondo-gris &__contenido,
-    &--fondo-dorado &__contenido {
-        h1, h2, h3, h4, h5, h6 { color: #1a1a1a; }
-        p { color: #555555; }
-    }
+    &--fondo-blanco &__titulo,
+    &--fondo-gris &__titulo,
+    &--fondo-dorado &__titulo { color: #1a1a1a; }
+
+    &--fondo-blanco &__contenido p,
+    &--fondo-gris &__contenido p,
+    &--fondo-dorado &__contenido p { color: #555555; }
 
     // ── Columna imagen ────────────────────────────────────
     &__imagen-wrap {
         position: relative;
-        border-radius: 16px;
         overflow: hidden;
         line-height: 0;
+        align-self: stretch;
     }
 
     &__imagen {
@@ -90,7 +92,6 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        border-radius: 16px;
         aspect-ratio: 16 / 10;
         transition: transform 0.5s ease;
     }
@@ -103,7 +104,6 @@
         align-items: center;
         justify-content: center;
         background: rgba(0,0,0,0.25);
-        border-radius: 16px;
         opacity: 0;
         transform: translateY(6px);
         transition: opacity 0.3s ease, transform 0.3s ease;
@@ -138,12 +138,10 @@
     // ── Responsive ────────────────────────────────────────
     @media (max-width: 1024px) {
         &--imagen-derecha {
-            .acemar-seccion-sostenibilidad__texto       { padding: 50px 40px 50px 50px; }
-            .acemar-seccion-sostenibilidad__imagen-wrap { padding: 30px 40px 30px 0; }
+            .acemar-seccion-sostenibilidad__texto { padding: 50px 40px 50px 50px; }
         }
         &--imagen-izquierda {
-            .acemar-seccion-sostenibilidad__texto       { padding: 50px 50px 50px 40px; }
-            .acemar-seccion-sostenibilidad__imagen-wrap { padding: 30px 0 30px 40px; }
+            .acemar-seccion-sostenibilidad__texto { padding: 50px 50px 50px 40px; }
         }
     }
 

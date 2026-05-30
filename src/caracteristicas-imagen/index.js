@@ -130,11 +130,13 @@ const Edit = ({ attributes, setAttributes }) => {
             <div className="acemar-ci__grid">
                 { items.map((item) => (
                     <div key={ item.id } className="acemar-ci__item">
-                        { item.iconoUrl ? (
-                            <img src={ item.iconoUrl } alt="" className="acemar-ci__icono" />
-                        ) : (
-                            <div className="acemar-ci__icono-placeholder">?</div>
-                        )}
+                        <div className="acemar-ci__icono-wrap">
+                            { item.iconoUrl ? (
+                                <img src={ item.iconoUrl } alt="" className="acemar-ci__icono" />
+                            ) : (
+                                <div className="acemar-ci__icono-placeholder">?</div>
+                            )}
+                        </div>
                         <span className="acemar-ci__texto" style={{ color: textColor }}>
                             { item.texto }
                         </span>
@@ -276,9 +278,11 @@ const Save = ({ attributes }) => {
             <div className="acemar-ci__grid">
                 { items.map((item) => (
                     <div key={ item.id } className="acemar-ci__item">
-                        { item.iconoUrl && (
-                            <img src={ item.iconoUrl } alt="" className="acemar-ci__icono" loading="lazy" />
-                        )}
+                        <div className="acemar-ci__icono-wrap">
+                            { item.iconoUrl && (
+                                <img src={ item.iconoUrl } alt="" className="acemar-ci__icono" loading="lazy" />
+                            )}
+                        </div>
                         <span className="acemar-ci__texto">{ item.texto }</span>
                     </div>
                 ))}

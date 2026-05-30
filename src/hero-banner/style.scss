@@ -34,7 +34,7 @@
         // Estilos para heading
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Cinzel', serif;
-            color: white;
+            color: #FFF3C7;
             margin-bottom: 20px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             font-weight: 400;
@@ -49,7 +49,7 @@
         p {
             color: white;
             font-size: clamp(16px, 2vw, 20px);
-            line-height: 1.6;
+            line-height: 1.2;
             margin-bottom: 30px;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }

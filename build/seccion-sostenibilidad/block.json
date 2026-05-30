@@ -2,12 +2,12 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "acemar/seccion-sostenibilidad",
-  "title": "Sección Sostenibilidad",
+  "title": "Foto + Texto",
   "category": "acemar",
   "icon": "format-image",
-  "description": "Sección de dos columnas: texto e imagen con botón opcional en hover",
+  "description": "Sección de dos columnas: foto e imagen con botón opcional en hover",
   "keywords": [
-    "sostenibilidad",
+    "foto",
     "texto",
     "imagen",
     "sección"
@@ -60,6 +60,22 @@
     "botonUrl": {
       "type": "string",
       "default": "#"
+    },
+    "titulo": {
+      "type": "string",
+      "default": ""
+    },
+    "nivelTitulo": {
+      "type": "string",
+      "default": "h2"
+    },
+    "tituloAlineacion": {
+      "type": "string",
+      "default": "left"
+    },
+    "contenidoAlineacion": {
+      "type": "string",
+      "default": "left"
     }
   },
   "editorScript": "file:./index.js",
