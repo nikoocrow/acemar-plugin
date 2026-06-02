@@ -89,3 +89,19 @@ function acemar_register_taxonomias_proyecto() {
         }
     }
 }
+
+// ── Renombrar etiquetas y placeholders ACF en admin ──────────────
+add_filter( 'acf/load_field', 'acemar_renombrar_datos_proyecto' );
+function acemar_renombrar_datos_proyecto( $field ) {
+    $map = [
+        'proyecto_dato_1' => [ 'label' => 'Producto',  'placeholder' => 'Ej: Panel liso decorativo' ],
+        'proyecto_dato_2' => [ 'label' => 'Especie',   'placeholder' => 'Ej: Nogal, Roble Oscuro'   ],
+        'proyecto_dato_3' => [ 'label' => 'Cliente',   'placeholder' => 'Ej: Arturo Calle'           ],
+        'proyecto_dato_4' => [ 'label' => 'Ciudad',    'placeholder' => 'Ej: Bogotá'                 ],
+    ];
+    if ( isset( $map[ $field['name'] ] ) ) {
+        $field['label']       = $map[ $field['name'] ]['label'];
+        $field['placeholder'] = $map[ $field['name'] ]['placeholder'];
+    }
+    return $field;
+}

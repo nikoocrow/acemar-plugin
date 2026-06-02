@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Acemar Blocks
  * Description: Bloques de Gutenberg personalizados para Acemar
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: Nicolas Castro
  * Text Domain: acemar-blocks
  * Requires at least: 6.0
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ACEMAR_BLOCKS_VERSION', '1.4.0');
+define('ACEMAR_BLOCKS_VERSION', '1.4.2');
 define('ACEMAR_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('ACEMAR_BLOCKS_URL', plugin_dir_url(__FILE__));
 
@@ -175,20 +175,21 @@ class Acemar_Blocks {
             .acemar-ci--fondo-blanco { background: #ffffff !important; }
             .acemar-ci--fondo-gris   { background: #f5f3ef !important; }
             .acemar-ci--fondo-negro  { background: #1a1a1a !important; }
-            .acemar-ci__col-iconos { padding: 5rem 4rem 5rem 5rem !important; }
+            .acemar-ci__col-iconos { padding: 5rem 4rem 5rem 5rem !important; align-self: start !important; }
             .acemar-ci--imagen-izquierda .acemar-ci__col-iconos { padding: 5rem 5rem 5rem 4rem !important; }
             .acemar-ci__titulo { font-family: "Cormorant Garamond", serif !important; font-size: clamp(1.5rem, 2.5vw, 2.2rem) !important; font-weight: 400 !important; color: #1a1a1a !important; margin: 0 0 2rem !important; }
             .acemar-ci--fondo-negro .acemar-ci__titulo { color: #ffffff !important; }
             .acemar-ci__grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2.5rem 3rem !important; }
             .acemar-ci__item { display: flex !important; flex-direction: column !important; align-items: center !important; gap: 0.75rem !important; text-align: center !important; }
+            .acemar-ci__icono-wrap { width: 140px !important; height: 140px !important; }
             .acemar-ci__item img,
-            .acemar-ci__icono { width: 52px !important; height: 52px !important; max-width: 52px !important; max-height: 52px !important; object-fit: contain !important; display: block !important; flex-shrink: 0 !important; }
+            .acemar-ci__icono { width: 104px !important; height: 104px !important; max-width: 104px !important; max-height: 104px !important; object-fit: contain !important; display: block !important; flex-shrink: 0 !important; }
             .acemar-ci--fondo-negro .acemar-ci__item img,
             .acemar-ci--fondo-negro .acemar-ci__icono { filter: brightness(0) invert(1) !important; }
             .acemar-ci__texto { font-size: 0.72rem !important; font-weight: 700 !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; color: #1a1a1a !important; line-height: 1.4 !important; }
             .acemar-ci--fondo-negro .acemar-ci__texto { color: #ffffff !important; }
             .acemar-ci__col-imagen { display: flex !important; align-items: center !important; justify-content: center !important; padding: 40px !important; }
-            .acemar-ci__imagen { width: 80% !important; height: auto !important; aspect-ratio: 4/3 !important; object-fit: cover !important; display: block !important; border-radius: 18px !important; border: 15px solid #1a1a1a !important; }
+            .acemar-ci__imagen { width: 80% !important; height: auto !important; aspect-ratio: 4/3 !important; object-fit: cover !important; display: block !important; border-radius: 18px !important; }
             @media (max-width: 900px) {
                 .acemar-caracteristicas-imagen { grid-template-columns: 1fr !important; }
                 .acemar-ci__col-iconos { padding: 3rem 1.5rem !important; order: 2 !important; }

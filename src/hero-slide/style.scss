@@ -11,9 +11,9 @@
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    
+
     &__overlay {
         position: absolute;
         top: 0;
@@ -22,38 +22,47 @@
         height: 100%;
         background: linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.3),
-            rgba(0, 0, 0, 0.5)
+            transparent 30%,
+            rgba(0, 0, 0, 0.55) 100%
         );
         z-index: 1;
     }
-    
+
     &__content {
         position: relative;
         z-index: 2;
         max-width: 900px;
         width: 100%;
-        padding: 80px 40px;
+        padding: 48px 40px;
         text-align: center;
         color: white;
-        
+
         // Título
         h1, h2, h3, h4, h5, h6, .hero-slide__title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(32px, 5vw, 56px);
+            font-size: clamp(28px, 4vw, 52px);
             font-weight: 400;
             line-height: 1.2;
             margin: 0 0 20px 0;
-            color: #FFF3C7;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            padding-bottom: 0;
+            color: #C8A96E;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+
+            &::after {
+                display: none;
+            }
         }
-        
+
         // Descripción
-        p, .hero-slide__description {
-            font-size: clamp(16px, 2vw, 20px);
+        p, .hero-slide__description, .wp-block-paragraph {
+            font-size: 15px;
             line-height: 1.2;
             margin: 0 0 30px 0;
+            padding: 0;
             color: white;
+            text-align: left;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }
         
@@ -109,9 +118,9 @@
     // Responsive
     @media (max-width: 768px) {
         min-height: 400px;
-        
+
         &__content {
-            padding: 60px 20px;
+            padding: 36px 20px;
         }
     }
 }
