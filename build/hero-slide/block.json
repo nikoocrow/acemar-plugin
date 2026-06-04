@@ -33,6 +33,14 @@
     "contentAlignment": {
       "type": "string",
       "default": "center"
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 40
     }
   },
   "supports": {

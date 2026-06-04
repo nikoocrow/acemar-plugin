@@ -12,6 +12,24 @@
     "carousel"
   ],
   "textdomain": "acemar-blocks",
+  "attributes": {
+    "titleText": {
+      "type": "string",
+      "default": ""
+    },
+    "titleAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "descriptionText": {
+      "type": "string",
+      "default": ""
+    },
+    "descriptionAlign": {
+      "type": "string",
+      "default": "left"
+    }
+  },
   "supports": {
     "align": [
       "wide",

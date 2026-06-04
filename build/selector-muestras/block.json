@@ -29,11 +29,19 @@
     },
     "titulo": {
       "type": "string",
-      "default": "Selector de acabados"
+      "default": ""
+    },
+    "tituloAlign": {
+      "type": "string",
+      "default": "center"
     },
     "descripcion": {
       "type": "string",
-      "default": "Descubre nuestra amplia gama de acabados, diseñados para cada espacio y estilo."
+      "default": ""
+    },
+    "descripcionAlign": {
+      "type": "string",
+      "default": "center"
     },
     "tipoSelector": {
       "type": "string",

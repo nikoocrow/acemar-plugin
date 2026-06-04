@@ -32,6 +32,10 @@
       "type": "string",
       "default": ""
     },
+    "projectId": {
+      "type": "number",
+      "default": 0
+    },
     "projectLink": {
       "type": "string",
       "default": ""

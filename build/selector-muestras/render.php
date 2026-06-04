@@ -3,8 +3,10 @@
  * render.php — Selector de Muestras
  */
 
-$titulo      = $attributes['titulo']      ?? 'Selector de muestras';
-$descripcion = $attributes['descripcion'] ?? '';
+$titulo           = $attributes['titulo']           ?? '';
+$titulo_align     = $attributes['tituloAlign']      ?? 'left';
+$descripcion      = $attributes['descripcion']      ?? '';
+$descripcion_align = $attributes['descripcionAlign'] ?? 'left';
 $tipo        = $attributes['tipoSelector'] ?? 'acabado';
 $accent      = $attributes['colorAccent'] ?? '#C8A96A';
 
@@ -87,19 +89,23 @@ $wrapper_attrs = get_block_wrapper_attributes([
 }
 </style>
 
+    <?php if ( $titulo || $descripcion ) : ?>
     <!-- Header -->
     <div class="acemar-selector-muestras__header">
-        <h2 class="acemar-selector-muestras__titulo">
-            <?php echo esc_html( $titulo ); ?>
+        <?php if ( $titulo ) : ?>
+        <h2 class="acemar-selector-muestras__titulo" style="text-align: <?php echo esc_attr( $titulo_align ); ?>;">
+            <?php echo wp_kses_post( $titulo ); ?>
         </h2>
         <span class="acemar-selector-muestras__accent-line"
               style="background-color: <?php echo esc_attr( $accent ); ?>;"></span>
+        <?php endif; ?>
         <?php if ( $descripcion ) : ?>
-            <p class="acemar-selector-muestras__descripcion">
-                <?php echo esc_html( $descripcion ); ?>
+            <p class="acemar-selector-muestras__descripcion" style="text-align: <?php echo esc_attr( $descripcion_align ); ?>;">
+                <?php echo wp_kses_post( $descripcion ); ?>
             </p>
         <?php endif; ?>
     </div>
+    <?php endif; ?>
 
     <!-- Body -->
     <div class="acemar-selector-muestras__body">

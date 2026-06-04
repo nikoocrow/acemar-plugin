@@ -6,9 +6,9 @@ import {
 } from '@wordpress/block-editor';
 import {
     PanelBody,
-    TextControl,
     SelectControl,
     ToggleControl,
+    TextControl,
     ColorPicker,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -24,7 +24,7 @@ const TIPO_OPTIONS = [
 
 const Edit = ({ attributes, setAttributes }) => {
     const {
-        titulo, descripcion, tipoSelector,
+        titulo, tituloAlign, descripcion, descripcionAlign, tipoSelector,
         etiquetaTab1, slugTab1,
         etiquetaTab2, slugTab2, mostrarTab2,
         etiquetaTab3, slugTab3, mostrarTab3,
@@ -32,6 +32,13 @@ const Edit = ({ attributes, setAttributes }) => {
     } = attributes;
 
     const blockProps = useBlockProps({ className: 'acemar-selector-muestras' });
+
+    const ALIGN_OPTIONS = [
+        { label: __('Izquierda', 'acemar-blocks'),  value: 'left'    },
+        { label: __('Centro', 'acemar-blocks'),      value: 'center'  },
+        { label: __('Derecha', 'acemar-blocks'),     value: 'right'   },
+        { label: __('Justificado', 'acemar-blocks'), value: 'justify' },
+    ];
 
     const tabs = [
         { label: etiquetaTab1, slug: slugTab1 },
@@ -42,25 +49,27 @@ const Edit = ({ attributes, setAttributes }) => {
     return (
         <>
             <InspectorControls>
-                <PanelBody title={__('Tipo de selector', 'acemar-blocks')} initialOpen={true}>
+                <PanelBody title={__('Encabezado de sección', 'acemar-blocks')} initialOpen={true}>
+                    <SelectControl
+                        label={__('Alineación del título', 'acemar-blocks')}
+                        value={tituloAlign}
+                        options={ALIGN_OPTIONS}
+                        onChange={(v) => setAttributes({ tituloAlign: v })}
+                    />
+                    <SelectControl
+                        label={__('Alineación del párrafo', 'acemar-blocks')}
+                        value={descripcionAlign}
+                        options={ALIGN_OPTIONS}
+                        onChange={(v) => setAttributes({ descripcionAlign: v })}
+                    />
+                </PanelBody>
+
+                <PanelBody title={__('Tipo de selector', 'acemar-blocks')} initialOpen={false}>
                     <SelectControl
                         label={__('¿Qué tipo de selector es?', 'acemar-blocks')}
                         value={tipoSelector}
                         options={TIPO_OPTIONS}
                         onChange={(v) => setAttributes({ tipoSelector: v })}
-                    />
-                </PanelBody>
-
-                <PanelBody title={__('Textos', 'acemar-blocks')} initialOpen={false}>
-                    <TextControl
-                        label={__('Título', 'acemar-blocks')}
-                        value={titulo}
-                        onChange={(v) => setAttributes({ titulo: v })}
-                    />
-                    <TextControl
-                        label={__('Descripción', 'acemar-blocks')}
-                        value={descripcion}
-                        onChange={(v) => setAttributes({ descripcion: v })}
                     />
                 </PanelBody>
 
@@ -141,18 +150,26 @@ const Edit = ({ attributes, setAttributes }) => {
                         className="acemar-sm__titulo"
                         value={titulo}
                         onChange={(v) => setAttributes({ titulo: v })}
-                        placeholder={__('Título del selector…', 'acemar-blocks')}
+                        onFocus={() => setActiveField('titulo')}
+                        placeholder={__('Título (opcional)…', 'acemar-blocks')}
+                        style={{ textAlign: tituloAlign }}
+                        allowedFormats={['core/bold', 'core/italic']}
                     />
-                    <span
-                        className="acemar-sm__accent-line"
-                        style={{ backgroundColor: colorAccent }}
-                    />
+                    {titulo && (
+                        <span
+                            className="acemar-sm__accent-line"
+                            style={{ backgroundColor: colorAccent }}
+                        />
+                    )}
                     <RichText
                         tagName="p"
                         className="acemar-sm__descripcion"
                         value={descripcion}
                         onChange={(v) => setAttributes({ descripcion: v })}
-                        placeholder={__('Descripción…', 'acemar-blocks')}
+                        onFocus={() => setActiveField('descripcion')}
+                        placeholder={__('Descripción (opcional)…', 'acemar-blocks')}
+                        style={{ textAlign: descripcionAlign }}
+                        allowedFormats={['core/bold', 'core/italic']}
                     />
                 </div>
 

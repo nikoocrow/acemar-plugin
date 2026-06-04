@@ -1,15 +1,17 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { 
+import {
     InnerBlocks,
     InspectorControls,
     MediaUpload,
     MediaUploadCheck,
     BlockControls,
     AlignmentToolbar,
+    ColorPalette,
     useBlockProps
 } from '@wordpress/block-editor';
-import { 
+import {
     PanelBody,
+    RangeControl,
     Button
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -41,7 +43,9 @@ const Edit = ({ attributes, setAttributes }) => {
         imageUrl,
         imageId,
         imageAlt,
-        contentAlignment
+        contentAlignment,
+        overlayColor,
+        overlayOpacity
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -77,7 +81,30 @@ const Edit = ({ attributes, setAttributes }) => {
             </BlockControls>
 
             <InspectorControls>
-                <PanelBody title={__('Imagen de fondo', 'acemar-blocks')} initialOpen={true}>
+                <PanelBody title={__('Overlay', 'acemar-blocks')} initialOpen={true}>
+                    <RangeControl
+                        label={__('Opacidad del overlay (%)', 'acemar-blocks')}
+                        value={overlayOpacity}
+                        onChange={(value) => setAttributes({ overlayOpacity: value })}
+                        min={0}
+                        max={90}
+                        step={5}
+                        help={__('0 = sin overlay, 90 = muy oscuro', 'acemar-blocks')}
+                    />
+                    <p style={{ marginBottom: '8px', fontWeight: 600 }}>{__('Color del overlay', 'acemar-blocks')}</p>
+                    <ColorPalette
+                        colors={[
+                            { name: 'Negro', color: '#000000' },
+                            { name: 'Blanco', color: '#ffffff' },
+                            { name: 'Dorado', color: '#D4AF37' },
+                            { name: 'Azul oscuro', color: '#1a2a4a' },
+                        ]}
+                        value={overlayColor}
+                        onChange={(value) => setAttributes({ overlayColor: value || '#000000' })}
+                        disableCustomColors={false}
+                    />
+                </PanelBody>
+                <PanelBody title={__('Imagen de fondo', 'acemar-blocks')} initialOpen={false}>
                     <MediaUploadCheck>
                         <MediaUpload
                             onSelect={onSelectImage}
@@ -135,14 +162,20 @@ const Edit = ({ attributes, setAttributes }) => {
             </InspectorControls>
 
             <div {...blockProps}>
-    <div className="acemar-hero-slide__overlay"></div>
-    <div className="acemar-hero-slide__content">
-        <InnerBlocks 
-            template={TEMPLATE}
-            templateLock={false}
-        />
-    </div>
-</div>
+                <div
+                    className="acemar-hero-slide__overlay"
+                    style={{
+                        backgroundColor: overlayColor,
+                        opacity: overlayOpacity / 100,
+                    }}
+                ></div>
+                <div className="acemar-hero-slide__content">
+                    <InnerBlocks
+                        template={TEMPLATE}
+                        templateLock={false}
+                    />
+                </div>
+            </div>
         </>
     );
 };
@@ -151,7 +184,9 @@ const Save = ({ attributes }) => {
     const {
         imageUrl,
         imageAlt,
-        contentAlignment
+        contentAlignment,
+        overlayColor,
+        overlayOpacity
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -163,7 +198,13 @@ const Save = ({ attributes }) => {
 
     return (
         <div {...blockProps}>
-            <div className="acemar-hero-slide__overlay"></div>
+            <div
+                className="acemar-hero-slide__overlay"
+                style={{
+                    backgroundColor: overlayColor,
+                    opacity: overlayOpacity / 100,
+                }}
+            ></div>
             <div className="acemar-hero-slide__content">
                 <InnerBlocks.Content />
             </div>

@@ -187,10 +187,7 @@
     }
 
     &__titulo-overlay {
-        font-family: "Tenor Sans", sans-serif;
-        font-size: 1rem;
-        color: #ffffff;
-        font-weight: 400;
+        display: none;
     }
 
     // Botones del hover — ocultos por defecto en desktop

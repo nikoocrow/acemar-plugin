@@ -5,30 +5,61 @@
  */
 
 import { registerBlockType } from '@wordpress/blocks';
-import { 
-    InnerBlocks, 
-    MediaUpload, 
+import {
+    InnerBlocks,
+    MediaUpload,
     MediaUploadCheck,
     InspectorControls,
-    useBlockProps 
+    useBlockProps
 } from '@wordpress/block-editor';
-import { 
-    Button, 
-    PanelBody, 
+import {
+    Button,
+    PanelBody,
+    SelectControl,
     TextControl,
     TextareaControl,
-    ToggleControl 
+    ToggleControl,
+    Spinner
 } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import './editor.scss';
 import './style.scss';
 import metadata from './block.json';
 
 const Edit = ({ attributes, setAttributes }) => {
-    const { imageUrl, imageId, imageAlt, projectLink, projectTarget, buttonText, projectDescription } = attributes;
+    const { imageUrl, imageId, imageAlt, projectId, projectLink, projectTarget, buttonText, projectDescription } = attributes;
     const blockProps = useBlockProps({
         className: 'acemar-project-card'
     });
+
+    const projects = useSelect((select) => {
+        return select('core').getEntityRecords('postType', 'acemar_proyecto', {
+            per_page: 100,
+            orderby: 'title',
+            order: 'asc',
+            status: 'publish',
+            _fields: 'id,title,link'
+        });
+    }, []);
+
+    const projectOptions = [
+        { label: '— Seleccionar proyecto —', value: 0 },
+        ...(projects || []).map((p) => ({
+            label: p.title.rendered,
+            value: p.id
+        }))
+    ];
+
+    const onSelectProject = (value) => {
+        const id = parseInt(value, 10);
+        const project = (projects || []).find((p) => p.id === id);
+        if (project) {
+            setAttributes({ projectId: id, projectLink: project.link });
+        } else {
+            setAttributes({ projectId: 0, projectLink: '' });
+        }
+    };
 
     const onSelectImage = (media) => {
         setAttributes({
@@ -75,25 +106,32 @@ const Edit = ({ attributes, setAttributes }) => {
                         placeholder="VER PROYECTO"
                         help={__('Texto que aparecerá en el botón', 'acemar-blocks')}
                     />
-                    
-                    <TextControl
-                        label={__('URL del proyecto', 'acemar-blocks')}
-                        value={projectLink}
-                        onChange={(value) => setAttributes({ projectLink: value })}
-                        placeholder="https://ejemplo.com/proyecto o /mi-pagina"
-                        help={__('URL externa (https://) o interna (/pagina)', 'acemar-blocks')}
-                    />
-                    
+
+                    {projects === null ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: '12px 0' }}>
+                            <Spinner />
+                            <span style={{ fontSize: '12px', color: '#757575' }}>{__('Cargando proyectos...', 'acemar-blocks')}</span>
+                        </div>
+                    ) : (
+                        <SelectControl
+                            label={__('Proyecto vinculado', 'acemar-blocks')}
+                            value={projectId}
+                            options={projectOptions}
+                            onChange={onSelectProject}
+                            help={__('El botón enlazará a la página de este proyecto', 'acemar-blocks')}
+                        />
+                    )}
+
                     <ToggleControl
                         label={__('Abrir en nueva pestaña', 'acemar-blocks')}
                         checked={projectTarget === '_blank'}
-                        onChange={(value) => 
+                        onChange={(value) =>
                             setAttributes({ projectTarget: value ? '_blank' : '_self' })
                         }
                         help={__('Recomendado para links externos', 'acemar-blocks')}
                     />
-                    
-                    {projectLink && (
+
+                    {projectId > 0 && projectLink && (
                         <div style={{
                             marginTop: '15px',
                             padding: '12px',
@@ -102,7 +140,7 @@ const Edit = ({ attributes, setAttributes }) => {
                             fontSize: '12px',
                             borderLeft: '3px solid #D4AF37'
                         }}>
-                            <strong>✓ Configuración activa:</strong>
+                            <strong>✓ Proyecto vinculado:</strong>
                             <div style={{ marginTop: '8px' }}>
                                 <strong>Botón:</strong> {buttonText || 'VER PROYECTO'}
                             </div>
