@@ -34,6 +34,12 @@
     &__contenido {
         .block-editor-rich-text__editable {
             outline: none;
+
+            p strong, p b {
+                font-size: 1em;
+                line-height: inherit;
+                vertical-align: baseline;
+            }
         }
 
         p:empty::before {

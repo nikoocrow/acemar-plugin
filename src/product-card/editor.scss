@@ -5,10 +5,10 @@
 .acemar-product-card {
     border: 2px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     background: white;
     transition: all 0.3s ease;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     width: 100%; // ANCHO COMPLETO
@@ -21,11 +21,13 @@
     &__image-wrapper {
         position: relative;
         width: 100%; // ANCHO COMPLETO
-        padding-bottom: 75%; // Aspecto ratio
+        height: 0 !important;
+        padding-bottom: 75% !important; // Aspecto ratio
         background-color: #f0f0f0;
         overflow: hidden;
         flex-shrink: 0;
         border-bottom: 2px solid #eee;
+        border-radius: 6px 6px 0 0;
     }
 
     &__image-container {
@@ -89,9 +91,9 @@
 
     &__upload-button {
         position: absolute;
-        top: 50%;
+        top: 20px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         
         min-height: 48px !important;
         padding: 12px 24px !important;
@@ -106,7 +108,20 @@
         
         &:hover {
             background: #b8962e !important;
-            transform: translate(-50%, -50%) scale(1.05) !important;
+            transform: translateX(-50%) scale(1.05) !important;
+        }
+    }
+
+    // Forzar visibilidad en el editor (anula el efecto hover del frontend)
+    &__content {
+        opacity: 1 !important;
+        transform: none !important;
+        position: static !important;
+        background: white !important;
+
+        p, .acemar-product-card__description {
+            opacity: 1 !important;
+            transform: none !important;
         }
     }
 

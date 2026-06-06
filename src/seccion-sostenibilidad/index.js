@@ -16,6 +16,7 @@ import {
     TextControl,
     SelectControl,
     RadioControl,
+    RangeControl,
     ToolbarGroup,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -47,6 +48,7 @@ const Edit = ({ attributes, setAttributes }) => {
         botonActivo, botonTexto, botonUrl,
         contenido, titulo, nivelTitulo,
         tituloAlineacion, contenidoAlineacion,
+        imagenConPadding, interlineado,
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -54,7 +56,8 @@ const Edit = ({ attributes, setAttributes }) => {
             'acemar-seccion-sostenibilidad',
             `acemar-seccion-sostenibilidad--fondo-${fondoColor}`,
             `acemar-seccion-sostenibilidad--imagen-${imagenPosicion}`,
-        ].join(' '),
+            imagenConPadding ? 'acemar-seccion-sostenibilidad--imagen-con-padding' : '',
+        ].filter(Boolean).join(' '),
     });
 
     const isDark = fondoColor === 'negro';
@@ -99,10 +102,26 @@ const Edit = ({ attributes, setAttributes }) => {
                         options={ NIVEL_TITULO_OPTIONS }
                         onChange={ (val) => setAttributes({ nivelTitulo: val }) }
                     />
+                    <RangeControl
+                        label="Interlineado del texto"
+                        value={ interlineado }
+                        onChange={ (val) => setAttributes({ interlineado: val }) }
+                        min={ 1.0 }
+                        max={ 3.0 }
+                        step={ 0.1 }
+                        allowReset
+                        resetFallbackValue={ 1.2 }
+                    />
                 </PanelBody>
 
                 {/* ── Imagen ── */}
                 <PanelBody title="Imagen" initialOpen={ true }>
+                    <ToggleControl
+                        label="Imagen con padding"
+                        help={ imagenConPadding ? 'Imagen con espacio y bordes redondeados' : 'Imagen ocupa todo el ancho de la columna' }
+                        checked={ imagenConPadding }
+                        onChange={ (val) => setAttributes({ imagenConPadding: val }) }
+                    />
                     { imagenUrl ? (
                         <>
                             <PanelRow>
@@ -209,7 +228,7 @@ const Edit = ({ attributes, setAttributes }) => {
                         value={ contenido }
                         onChange={ (val) => setAttributes({ contenido: val }) }
                         allowedFormats={ ['core/bold', 'core/italic', 'core/link'] }
-                        style={{ color: isDark ? '#ffffff' : '#1a1a1a', textAlign: contenidoAlineacion }}
+                        style={{ color: isDark ? '#ffffff' : '#1a1a1a', textAlign: contenidoAlineacion, '--acemar-lh': interlineado }}
                     />
                 </div>
 
@@ -254,6 +273,7 @@ const Save = ({ attributes }) => {
         botonActivo, botonTexto, botonUrl,
         contenido, titulo, nivelTitulo,
         tituloAlineacion, contenidoAlineacion,
+        imagenConPadding, interlineado,
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -261,7 +281,8 @@ const Save = ({ attributes }) => {
             'acemar-seccion-sostenibilidad',
             `acemar-seccion-sostenibilidad--fondo-${fondoColor}`,
             `acemar-seccion-sostenibilidad--imagen-${imagenPosicion}`,
-        ].join(' '),
+            imagenConPadding ? 'acemar-seccion-sostenibilidad--imagen-con-padding' : '',
+        ].filter(Boolean).join(' '),
     });
 
     return (
@@ -279,7 +300,7 @@ const Save = ({ attributes }) => {
                     tagName="div"
                     className="acemar-seccion-sostenibilidad__contenido"
                     value={ contenido }
-                    style={{ textAlign: contenidoAlineacion }}
+                    style={{ textAlign: contenidoAlineacion, '--acemar-lh': interlineado }}
                 />
             </div>
 

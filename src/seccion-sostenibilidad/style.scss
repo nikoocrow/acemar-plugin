@@ -36,6 +36,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: stretch;
     }
 
     &__titulo {
@@ -47,8 +48,8 @@
         padding-bottom: 0;
         text-align: left;
 
-        &:is(h2) { font-size: clamp(2.2rem, 4vw, 3.8rem); }
-        &:is(h3) { font-size: clamp(1.8rem, 3vw, 3rem); }
+        &:is(h2) { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+        &:is(h3) { font-size: clamp(1.5rem, 3vw, 2.5rem); }
 
         &::after { display: none; }
     }
@@ -57,12 +58,29 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        align-items: stretch;
 
         p {
             font-family: 'Tenor Sans', sans-serif;
             font-size: clamp(1rem, 1.3vw, 1.15rem);
-            line-height: 1.8;
+            line-height: var(--acemar-lh, 1.2);
             margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: inherit;
+
+            // Anula la regla del tema: p:last-child { margin: 20px 50px; }
+            // Esta selector tiene especificidad (0,2,1) vs (0,1,1) del tema
+            &:last-child {
+                margin: 0;
+                padding: 0;
+            }
+
+            strong, b {
+                font-size: 1em;
+                line-height: inherit;
+                vertical-align: baseline;
+            }
         }
     }
 
@@ -135,6 +153,21 @@
         svg { flex-shrink: 0; }
     }
 
+    // ── Imagen con padding ────────────────────────────────
+    &--imagen-con-padding &__imagen-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+        overflow: visible;
+    }
+
+    &--imagen-con-padding &__imagen {
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14);
+    }
+
     // ── Responsive ────────────────────────────────────────
     @media (max-width: 1024px) {
         &--imagen-derecha {
@@ -142,6 +175,9 @@
         }
         &--imagen-izquierda {
             .acemar-seccion-sostenibilidad__texto { padding: 50px 50px 50px 40px; }
+        }
+        &--imagen-con-padding .acemar-seccion-sostenibilidad__imagen-wrap {
+            padding: 24px;
         }
     }
 
@@ -169,6 +205,14 @@
         &__imagen {
             border-radius: 0;
             aspect-ratio: 16 / 9;
+        }
+
+        &--imagen-con-padding .acemar-seccion-sostenibilidad__imagen-wrap {
+            padding: 16px;
+        }
+
+        &--imagen-con-padding .acemar-seccion-sostenibilidad__imagen {
+            border-radius: 10px;
         }
 
         // Botón siempre visible en mobile

@@ -3,6 +3,10 @@
 // ==========================================================
 
 .acemar-recursos-tecnicos {
+    p:last-child {
+        margin: 0;
+    }
+
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 60px;
@@ -17,19 +21,20 @@
     &__left {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 12px;
     }
 
     &__titulo {
         font-family: "Italiana", sans-serif;
-        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-size: clamp(2.4rem, 4.5vw, 3.8rem);
         font-weight: 400;
         color: #1a1a1a;
         margin: 0;
         line-height: 1.1;
         letter-spacing: 0.05em;
+        text-align: left;
         position: relative;
-        padding-bottom: 12px;
+        padding-bottom: 8px;
 
         &::after {
             content: '';

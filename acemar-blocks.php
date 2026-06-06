@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Acemar Blocks
  * Description: Bloques de Gutenberg personalizados para Acemar
- * Version: 1.4.4
+ * Version: 1.4.6
  * Author: Nicolas Castro
  * Text Domain: acemar-blocks
  * Requires at least: 6.0
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('ACEMAR_BLOCKS_VERSION', '1.4.4');
+define('ACEMAR_BLOCKS_VERSION', '1.4.6');
 define('ACEMAR_BLOCKS_PATH', plugin_dir_path(__FILE__));
 define('ACEMAR_BLOCKS_URL', plugin_dir_url(__FILE__));
 

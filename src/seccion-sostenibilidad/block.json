@@ -68,6 +68,14 @@
     "contenidoAlineacion": {
       "type": "string",
       "default": "left"
+    },
+    "imagenConPadding": {
+      "type": "boolean",
+      "default": false
+    },
+    "interlineado": {
+      "type": "number",
+      "default": 1.2
     }
   },
   "editorScript": "file:./index.js",

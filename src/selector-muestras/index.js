@@ -40,6 +40,13 @@ const Edit = ({ attributes, setAttributes }) => {
         { label: __('Justificado', 'acemar-blocks'), value: 'justify' },
     ];
 
+    const marginByAlign = {
+        center:  { marginLeft: 'auto',  marginRight: 'auto' },
+        left:    { marginLeft: '0',     marginRight: 'auto' },
+        right:   { marginLeft: 'auto',  marginRight: '0'    },
+        justify: { marginLeft: '0',     marginRight: '0'    },
+    };
+
     const tabs = [
         { label: etiquetaTab1, slug: slugTab1 },
         ...(mostrarTab2 ? [{ label: etiquetaTab2, slug: slugTab2 }] : []),
@@ -168,7 +175,7 @@ const Edit = ({ attributes, setAttributes }) => {
                         onChange={(v) => setAttributes({ descripcion: v })}
                         onFocus={() => setActiveField('descripcion')}
                         placeholder={__('Descripción (opcional)…', 'acemar-blocks')}
-                        style={{ textAlign: descripcionAlign }}
+                        style={{ textAlign: descripcionAlign, ...( marginByAlign[descripcionAlign] || marginByAlign.center ) }}
                         allowedFormats={['core/bold', 'core/italic']}
                     />
                 </div>

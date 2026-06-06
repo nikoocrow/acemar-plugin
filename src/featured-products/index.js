@@ -1,6 +1,6 @@
 /**
  * BLOQUE CONTENEDOR: Featured Products
- * Máximo 6 tarjetas
+ * Máximo 20 tarjetas
  */
 
 import { registerBlockType } from '@wordpress/blocks';
@@ -33,8 +33,8 @@ const Edit = ({ clientId }) => {
         ['acemar/product-card', {}]
     ];
 
-    // Permitir agregar solo si hay menos de 6
-    const canAddMore = cardCount < 6;
+    // Permitir agregar solo si hay menos de 20
+    const canAddMore = cardCount < 20;
 
     return (
         <div {...blockProps}>
@@ -46,7 +46,7 @@ const Edit = ({ clientId }) => {
                     renderAppender={canAddMore ? () => <InnerBlocks.ButtonBlockAppender /> : false}
                 />
             </div>
-            {cardCount >= 6 && (
+            {cardCount >= 20 && (
                 <div style={{
                     textAlign: 'center',
                     padding: '15px',
@@ -56,7 +56,7 @@ const Edit = ({ clientId }) => {
                     marginTop: '15px',
                     fontWeight: '600'
                 }}>
-                    ⚠️ Máximo 6 tarjetas alcanzado
+                    ⚠️ Máximo 20 tarjetas alcanzado
                 </div>
             )}
         </div>

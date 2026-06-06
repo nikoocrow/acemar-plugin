@@ -4,9 +4,14 @@
  */
 
 $titulo           = $attributes['titulo']           ?? '';
-$titulo_align     = $attributes['tituloAlign']      ?? 'left';
+$titulo_align     = $attributes['tituloAlign']      ?? 'center';
 $descripcion      = $attributes['descripcion']      ?? '';
-$descripcion_align = $attributes['descripcionAlign'] ?? 'left';
+$descripcion_align = $attributes['descripcionAlign'] ?? 'center';
+$descripcion_margin = match( $descripcion_align ) {
+    'left'  => 'margin-left: 0; margin-right: auto;',
+    'right' => 'margin-left: auto; margin-right: 0;',
+    default => 'margin-left: auto; margin-right: auto;',
+};
 $tipo        = $attributes['tipoSelector'] ?? 'acabado';
 $accent      = $attributes['colorAccent'] ?? '#C8A96A';
 
@@ -100,7 +105,7 @@ $wrapper_attrs = get_block_wrapper_attributes([
               style="background-color: <?php echo esc_attr( $accent ); ?>;"></span>
         <?php endif; ?>
         <?php if ( $descripcion ) : ?>
-            <p class="acemar-selector-muestras__descripcion" style="text-align: <?php echo esc_attr( $descripcion_align ); ?>;">
+            <p class="acemar-selector-muestras__descripcion" style="text-align: <?php echo esc_attr( $descripcion_align ); ?>; <?php echo $descripcion_margin; ?>">
                 <?php echo wp_kses_post( $descripcion ); ?>
             </p>
         <?php endif; ?>
